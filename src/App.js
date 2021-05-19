@@ -15,6 +15,8 @@ class App extends Component {
       name: '',
       email:'',
       cheatingCategory: '',
+      loverName: '',
+      partnerName: '',
       items: []
     }
     this.handleChange = this.handleChange.bind(this);
@@ -27,11 +29,15 @@ class App extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime();
 
     const item = {
       orientation: this.state.orientation,
       cheatingCategory: this.state.cheatingCategory,
       name: this.state.name,
+      loverName: this.state.loverName,
+      partnerName: this.state.partnerName,
       email: this.state.email
     }
 
@@ -39,32 +45,37 @@ class App extends Component {
       Orientation: item.orientation,
       Name: item.name,
       email: item.email,
-      cheatingCategory: item.cheatingCategory
+      cheatingCategory: item.cheatingCategory,
+      LoverName: item.loverName,
+      PartnerName: item.partnerName,
+      Timestamp: currentDate
     });
+
 
     ref.where('orientation', '==', item.orientation).onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         //call parser function
+         const personalizedStory = this.parseTemplate(doc.data().content, item)
         items.push(doc.data());
+
         const userStoryRef = firebase.firestore().collection('UserStories').add({
           StoryName: doc.data().Storyname,
-          Content: doc.data().content,
-          email: item.email
+          Content: personalizedStory,
+          userId: item.email,
+          Timestamp: currentDate
         });
       });
-
-      console.log(items);
-
-    })
+    });
 
     this.setState({
       orientation: '',
       name: '',
       email: '',
-      cheatingCategory: ''
+      cheatingCategory: '',
+      loverName: '',
+      partnerName: ''
     });
-
   }
   componentDidMount() {
     const itemsRef = firebase.database().ref('items');
@@ -88,6 +99,14 @@ class App extends Component {
     const itemRef = firebase.database().ref(`/items/${itemId}`);
     itemRef.remove();
   }
+
+ parseTemplate(story, item){
+    const partnerReplaced = story.replaceAll('{Partner Name}', item.partnerName);
+    const nameReplaced = partnerReplaced.replaceAll('{Name}', item.name);
+    const loverNameReplaced = nameReplaced.replaceAll('{Lover Name}', item.loverName);
+
+    return loverNameReplaced;
+  }
   render() {
     return (
       <div className='app'>
@@ -102,9 +121,11 @@ class App extends Component {
                 <form onSubmit={this.handleSubmit}>
                   <input type="text" name="name" placeholder="What's your name?" onChange={this.handleChange} value={this.state.name} />
                   <input type="text" name="email" placeholder="What's your email?" onChange={this.handleChange} value={this.state.email} />
-                  <input type="text" name="orientation" placeholder="Orientation?" onChange={this.handleChange} value={this.state.orientation} />
+                  <input type="text" name="orientation" placeholder="Orientation" onChange={this.handleChange} value={this.state.orientation} />
+                  <input type="text" name="loverName" placeholder="LoverName" onChange={this.handleChange} value={this.state.loverName} />
+                  <input type="text" name="partnerName" placeholder="PartnerName" onChange={this.handleChange} value={this.state.partnerName} />
                   <input type="text" name="cheatingCategory" placeholder="Cheating Category" onChange={this.handleChange} value={this.state.cheatingCategory} />
-                  <button>Add Item</button>
+                  <button>Sign up</button>
                 </form>
           </section>
           <section className='display-item'>
