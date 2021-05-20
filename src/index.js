@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import SignUp from "./SignupPage";
+import LoginPage from "./LoginPage";
+import ExampleStory from "./ExampleStory";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import BaseTemplate from "./BaseTemplate";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/examplestory" component={ExampleStory} />
+          <Route exact path="/base" component={BaseTemplate} />
+          <Route exact path="/" component={App} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
