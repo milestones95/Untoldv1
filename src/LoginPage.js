@@ -13,16 +13,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseTemplate from "./BaseTemplate";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100vh"
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center"
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -36,10 +32,10 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    // marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    // margin: theme.spacing(3, 0, 2)
   }
 }));
 
@@ -47,11 +43,13 @@ const LoginPage = () => {
   const classes = useStyles();
 
   return (
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+      <Navbar />
+      </Grid>
     <Grid container component="main" className={classes.root}>
-      <BaseTemplate />
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -113,6 +111,10 @@ const LoginPage = () => {
         </div>
       </Grid>
     </Grid>
+    <Grid item xs={12}>
+    <Footer />
+    </Grid>
+  </Grid>
   );
 };
 

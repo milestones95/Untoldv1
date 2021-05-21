@@ -12,7 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import BaseTemplate from "./BaseTemplate";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 
 const useStyles = makeStyles(theme => ({
@@ -44,8 +45,11 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+      <Navbar />
+      </Grid>
     <Container component="main" maxWidth="xs">
-    <BaseTemplate />
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -119,5 +123,9 @@ export default function SignUp() {
       <Box mt={5}>
       </Box>
     </Container>
+    <Grid item xs={12}>
+    <Footer />
+    </Grid>
+  </Grid>
   );
 }

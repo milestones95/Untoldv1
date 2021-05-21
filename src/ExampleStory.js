@@ -1,11 +1,17 @@
 import { Typography } from '@material-ui/core';
 import BaseTemplate from "./BaseTemplate";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function ExampleStory() {
   return (
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+      <Navbar />
+      </Grid>
     <Container>
-      <BaseTemplate />
       <Typography variant="h1">
         Nyomi's Lesbian Story
       <Typography component="div">
@@ -87,5 +93,9 @@ export default function ExampleStory() {
       </Typography>
       </Typography>
     </Container>
+      <Grid item xs={12}>
+      <Footer />
+      </Grid>
+    </Grid>
   );
 }
