@@ -107,6 +107,7 @@ class App extends Component {
 
     return loverNameReplaced;
   }
+
   render() {
     return (
       <div className='app'>
