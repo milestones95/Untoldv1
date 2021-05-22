@@ -26,19 +26,26 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    alignItems: "center",
+    marginLeft: theme.spacing(6),
+  },
+  textUnderAvatar: {
+    alignItems: "center",
+    marginLeft: theme.spacing(6),
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "80%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(6),
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
 }));
 
 export default function SignUp() {
@@ -49,18 +56,18 @@ export default function SignUp() {
       <Grid item xs={12}>
       <Navbar />
       </Grid>
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className={classes.textUnderAvatar}>
           Create an account
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -72,7 +79,7 @@ export default function SignUp() {
                 autoFocus
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               <TextField
                 variant="outlined"
                 required
@@ -83,7 +90,7 @@ export default function SignUp() {
                 autoComplete="email"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               <TextField
                 variant="outlined"
                 required
@@ -95,10 +102,10 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want to get updates via email."
               />
             </Grid>
           </Grid>
@@ -127,3 +134,11 @@ export default function SignUp() {
   </Grid>
   );
 }
+<Grid container column spacing={2}>
+  <Grid item xs={6}>
+    <FormControlLabel
+      control={<Checkbox value="allowExtraEmails" color="primary" />}
+      label="I want to get inspiration, marketing promotions and updates via email."
+    />
+  </Grid>
+</Grid>

@@ -18,7 +18,8 @@ import Footer from "./Footer";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "80%"
+    height: "80%",
+    marginTop: theme.spacing(8),
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: "35%", // Fix IE 11 issue.
+    width: "70%", // Fix IE 11 issue.
     // marginTop: theme.spacing(1)
   },
   submit: {
