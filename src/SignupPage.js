@@ -19,7 +19,7 @@ import Footer from "./Footer";
 const useStyles = makeStyles(theme => ({
   "@global": {
     body: {
-      backgroundColor: theme.palette.common.white
+      backgroundColor: theme.palette.common.grey,
     }
   },
   paper: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -45,7 +45,7 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={10}>
       <Grid item xs={12}>
       <Navbar />
       </Grid>
@@ -56,11 +56,11 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create an account
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -113,19 +113,17 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-      </Box>
     </Container>
-    <Grid item xs={12}>
-    <Footer />
-    </Grid>
+      <Grid item xs={12}>
+        <Footer />
+      </Grid>
   </Grid>
   );
 }

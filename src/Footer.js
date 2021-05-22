@@ -4,13 +4,27 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  "footer": {
+    position: "static",
+    width: "100%",
+    bottom: "0",
+    background: "white",
+    boxShadow: 'none',
+  }
+}));
 
 export default function Footer() {
+
+    const classes = useStyles();
+
     return (
-        <AppBar position="static" color="primary">
+        <AppBar color="primary" className={classes.footer}>
           <Container maxWidth="md">
             <Toolbar>
-              <Grid container spacing={3}>
+              <Grid container spacing={3}  alignItems="center"  justify="center">
                   <Grid item xs={2}>
                     <Link href="/" color="secondary">Home</Link>
                   </Grid>
@@ -30,10 +44,12 @@ export default function Footer() {
             </Toolbar>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                © 2020 Untold-Ink, Inc. All rights reserved.
+                <Typography color="primary" align="center">
+                  © 2020 Untold-Ink, Inc. All rights reserved.
+                </Typography>
               </Grid>
             </Grid>
           </Container>
-        </AppBar>
+         </AppBar>
     )
 }

@@ -18,7 +18,7 @@ import Footer from "./Footer";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "100vh"
+    height: "80%"
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "35%", // Fix IE 11 issue.
     // marginTop: theme.spacing(1)
   },
   submit: {
@@ -55,7 +55,7 @@ const LoginPage = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign in to your account
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -80,10 +80,10 @@ const LoginPage = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
             <Button
               type="submit"
               fullWidth
