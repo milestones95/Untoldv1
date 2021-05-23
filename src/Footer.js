@@ -13,7 +13,9 @@ const useStyles = makeStyles(theme => ({
     bottom: "0",
     background: "white",
     boxShadow: 'none',
-  }
+    marginTop: theme.spacing(10)
+  },
+
 }));
 
 export default function Footer() {
@@ -25,30 +27,28 @@ export default function Footer() {
           <Container maxWidth="md">
             <Toolbar>
               <Grid container spacing={3}  alignItems="center"  justify="center">
-                  <Grid item xs={2}>
+                  <Grid item sm={2} xs={12}>
                     <Link href="/" color="secondary">Home</Link>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item sm={2} xs={12}>
                     <Link href='#' color="secondary">How It Works</Link>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item sm={2} xs={12}>
                     <Link href='/examplestory' color="secondary">Example Story</Link>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item sm={2} xs={12}>
                     <Link href="/login" color="secondary">Sign In</Link>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item sm={2} xs={12}>
                     <Link href="/signup" color="secondary">SignUp</Link>
+                  </Grid>
+                  <Grid item sm={12} xs={12}>
+                    <Typography color="primary" align="center">
+                      © 2020 Untold-Ink, Inc. All rights reserved.
+                    </Typography>
                   </Grid>
                 </Grid>
             </Toolbar>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Typography color="primary" align="center">
-                  © 2020 Untold-Ink, Inc. All rights reserved.
-                </Typography>
-              </Grid>
-            </Grid>
           </Container>
          </AppBar>
     )
