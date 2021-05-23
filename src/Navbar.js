@@ -28,12 +28,23 @@ const styles = theme => ({
     },
     position: "fixed",
     width: "100%",
-    background: "#ffffff",
+    height: "7%",
+    background: "#000000",
+  },
+  buttonBarText: {
+    marginTop: theme.spacing(1.5),
+  },
+  signUpButton: {
+    marginTop: theme.spacing(1),
   },
   links: {
     '& > * + *': {
       marginLeft: theme.spacing(2),
     },
+    marginTop: theme.spacing(1.5),
+  },
+  menuIcon: {
+    marginTop: theme.spacing(1.5),
   },
   dropDownMenuItem: {
     textAlign: "left",
@@ -93,8 +104,8 @@ const Navbar = props => (
     </ButtonAppBarCollapse>
     <div className={props.classes.buttonBar} id="appbar-collapse">
       <Grid container>
-        <Grid item lg={2} sm={2}>
-          < MenuIcon />
+        <Grid item lg={2} sm={2} className={props.classes.menuIcon}>
+          < MenuIcon color="primary"/>
         </Grid>
         <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
           <Typography className={props.classes.links}>
@@ -109,7 +120,8 @@ const Navbar = props => (
               </Typography>
         </Grid>
         <Grid item lg={1} sm={1} style={{textAlign: "left"}}>
-          <Button variant="contained" color="secondary" href="/signup">SignUp</Button>
+          <Button variant="contained" color="secondary" href="/signup"
+            className={props.classes.signUpButton}>SignUp</Button>
         </Grid>
         </Grid>
     </div>

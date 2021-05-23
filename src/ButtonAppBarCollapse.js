@@ -14,7 +14,7 @@ const styles = theme => ({
     margin: "auto"
   },
   untoldLogo: {
-    margin: "auto"
+    marginLeft: theme.spacing(7),
   },
   navBar: {
     [theme.breakpoints.up("sm")]: {
@@ -51,10 +51,10 @@ class ButtonAppBarCollapse extends React.Component {
     return (
       <AppBar className={classes.navBar}>
         <Grid container spacing={10}>
-          <Grid item sm={5}>
+          <Grid item sm={6} className={classes.untoldLogo}>
             <MenuIcon color="primary" />
           </Grid>
-          <Grid item sm={5} className={classes.buttonCollapse}>
+          <Grid item sm={6} className={classes.buttonCollapse}>
             <MenuIcon onClick={this.handleMenu} color="primary"  />
             <Menu
               id="menu-appbar"
