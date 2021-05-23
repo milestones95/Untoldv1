@@ -8,7 +8,9 @@ import LoginPage from "./LoginPage";
 import ExampleStory from "./ExampleStory";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import BaseTemplate from "./BaseTemplate";
-
+import { createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+ 
 ReactDOM.render(
   <React.StrictMode>
     <Router>

@@ -35,6 +35,12 @@ const useStyles = makeStyles(theme => ({
     width: "70%", // Fix IE 11 issue.
     // marginTop: theme.spacing(1)
   },
+  footerPadding: {
+    marginTop: theme.spacing(2),
+    bottom: "0",
+    position: "fixed",
+    width: "100%",
+  },
   submit: {
     // margin: theme.spacing(3, 0, 2)
   }
@@ -112,7 +118,7 @@ const LoginPage = () => {
         </div>
       </Grid>
     </Grid>
-    <Grid item xs={12}>
+    <Grid item xs={12} >
     <Footer />
     </Grid>
   </Grid>
