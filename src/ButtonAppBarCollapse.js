@@ -3,15 +3,30 @@ import { withStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from '@material-ui/icons/Menu';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
   buttonCollapse: {
     [theme.breakpoints.up("sm")]: {
       display: "none"
     },
-    margin: "10px",
-    boxShadow: "none"
-  }
+    margin: "auto"
+  },
+  untoldLogo: {
+    marginLeft: theme.spacing(7),
+  },
+  navBar: {
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    },
+    boxShadow: "none",
+    position: "fixed",
+    width: "100%",
+    height: "10%",
+    background: "#ffffff",
+  },
+
 });
 
 class ButtonAppBarCollapse extends React.Component {
@@ -34,27 +49,32 @@ class ButtonAppBarCollapse extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.buttonCollapse}>
-        <IconButton onClick={this.handleMenu}>
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
-          open={open}
-          onClose={this.handleClose}
-        >
-          {this.props.children}
-        </Menu>
-      </div>
+      <AppBar className={classes.navBar}>
+        <Grid container spacing={10}>
+          <Grid item sm={6} className={classes.untoldLogo}>
+            <MenuIcon color="primary" />
+          </Grid>
+          <Grid item sm={6} className={classes.buttonCollapse}>
+            <MenuIcon onClick={this.handleMenu} color="primary"  />
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              open={open}
+              onClose={this.handleClose}
+            >
+              {this.props.children}
+            </Menu>
+         </Grid>
+        </Grid>
+      </AppBar>
     );
   }
 }
