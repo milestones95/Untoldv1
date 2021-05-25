@@ -1,22 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Button, MenuItem } from "@material-ui/core";
-import IconButton from '@material-ui/core/IconButton';
+import { Button } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { createMuiTheme } from "@material-ui/core/styles";
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { withStyles } from "@material-ui/core/styles";
 import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
 import Grid from '@material-ui/core/Grid';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
-import Footer from "./Footer";
-import Box from '@material-ui/core/Box';
 
 const styles = theme => ({
   root: {

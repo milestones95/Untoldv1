@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import firebase from './firebase.js';
-import "firebase/firestore";
-
-const ref = firebase.firestore().collection('Stories');
-
 
 class App extends Component {
   constructor() {
@@ -29,44 +22,6 @@ class App extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    const currentDate = new Date();
-    const timestamp = currentDate.getTime();
-
-    const item = {
-      orientation: this.state.orientation,
-      cheatingCategory: this.state.cheatingCategory,
-      name: this.state.name,
-      loverName: this.state.loverName,
-      partnerName: this.state.partnerName,
-      email: this.state.email
-    }
-
-    const userRef = firebase.firestore().collection('Users').add({
-      Orientation: item.orientation,
-      Name: item.name,
-      email: item.email,
-      cheatingCategory: item.cheatingCategory,
-      LoverName: item.loverName,
-      PartnerName: item.partnerName,
-      Timestamp: currentDate
-    });
-
-
-    ref.where('orientation', '==', item.orientation).onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        //call parser function
-         const personalizedStory = this.parseTemplate(doc.data().content, item)
-        items.push(doc.data());
-
-        const userStoryRef = firebase.firestore().collection('UserStories').add({
-          StoryName: doc.data().Storyname,
-          Content: personalizedStory,
-          userId: item.email,
-          Timestamp: currentDate
-        });
-      });
-    });
 
     this.setState({
       orientation: '',
@@ -78,26 +33,11 @@ class App extends Component {
     });
   }
   componentDidMount() {
-    const itemsRef = firebase.database().ref('items');
-    itemsRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-      let newState = [];
-      for (let item in items) {
-        newState.push({
-          id: item,
-          title: items[item].title,
-          user: items[item].user
-        });
-      }
-      this.setState({
-        items: newState
-      });
-    });
+
   }
 
   removeItem(itemId) {
-    const itemRef = firebase.database().ref(`/items/${itemId}`);
-    itemRef.remove();
+
   }
 
  parseTemplate(story, item){
