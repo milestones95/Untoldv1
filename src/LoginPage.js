@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect, useState} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { supabase } from "./api/supabaseClient";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,8 +50,33 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LoginPage = () => {
-  const classes = useStyles();
+      const [helperText, setHelperText] = useState({ error: null, text: null });
+      const emailRef = useRef();
+      const passwordRef = useRef();
+      const classes = useStyles();
+      const history = useHistory() // imported from react-router!
 
+      const handleLogin = async (type) => {
+          const email = emailRef.current?.value;
+          const password = passwordRef.current?.value;
+
+          const { user, error } =
+              type === "LOGIN"
+                  ? await supabase.auth.signIn({ email, password })
+                  : await supabase.auth.signUp({ email, password });
+
+          if (error) {
+              setHelperText({ error: true, text: error.message });
+          } else if (!user && !error) {
+
+              setHelperText({
+                  error: false,
+                  text: "An email has been sent to you for verification!",
+              });
+          }
+          history.push("/profile")
+
+      };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -62,42 +92,54 @@ const LoginPage = () => {
           <Typography component="h1" variant="h5">
             Sign in to your account
           </Typography>
-          <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+          <Grid item xs={12} lg={12}>
             <TextField
               variant="outlined"
-              margin="normal"
               required
               fullWidth
               id="email"
               label="Email Address"
-              name="email"
+              name={"email"}
+              type={"email"}
               autoComplete="email"
-              autoFocus
+              inputRef={emailRef}
             />
+          </Grid>
+          <Grid item xs={12} lg={12}>
             <TextField
               variant="outlined"
-              margin="normal"
               required
               fullWidth
-              name="password"
+              name={"password"}
               label="Password"
-              type="password"
+              type={"password"}
               id="password"
               autoComplete="current-password"
+              inputRef={passwordRef}
+
             />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <FormControlLabel
+              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              label="Remember me"
+            />
+          </Grid>
+          </Grid>
+
+          <Button
+           type="submit"
+           onClick={() =>
+               handleLogin("LOGIN").catch(console.error)
+           }
+           className={classes.submit}
+           fullWidth
+           variant="contained"
+           color="primary"
+          >
+           Sign In
+          </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -112,7 +154,6 @@ const LoginPage = () => {
             </Grid>
             <Box mt={5}>
             </Box>
-          </form>
         </div>
       </Grid>
     </Grid>
