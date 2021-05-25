@@ -26,16 +26,24 @@ const useStyles = makeStyles(theme => ({
     align: "center"
   },
   stepper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
+    width: "43%"
   },
   avatar: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     backgroundColor: theme.palette.secondary.main,
     marginLeft: theme.spacing(6),
   },
-  button: {
-    // marginLeft: theme.spacing(90),
+  cards: {
+    marginTop: theme.spacing(3),
   },
+  headerText: {
+    marginTop: theme.spacing(1),
+  },
+  backButton: {
+    marginTop: theme.spacing(4),
+  },
+
 }));
 
 export default function HorizontalLinearStepper() {
@@ -108,10 +116,10 @@ export default function HorizontalLinearStepper() {
         <AccessAlarmIcon color="primary" className={classes.avatar}/>
         </div>
        </Grid>
-      <Grid item xs={12} sm={12} className={classes.stepper}>
+      <Grid item xs={12} sm={12}>
       <div align="center">
         <Box sx={{ width: '100%' }}>
-          <Stepper activeStep={activeStep}>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label, index) => {
               const stepProps = {};
               const labelProps = {};
@@ -128,15 +136,15 @@ export default function HorizontalLinearStepper() {
         </Box>
         </div>
       </Grid>
-      <Grid item xs={12} sm={12} style={{textAlign: "center"}}>
+      <Grid item xs={12} sm={12} style={{textAlign: "center"}} className={classes.headerText}>
         <Typography variant="h5">
            Tell us what type of story you would you like
         </Typography>
        </Grid>
-      <Grid item xs={12} sm={12}>
+      <Grid item xs={12} sm={12} className={classes.cards}>
         {onboardingCardType[activeStep + 1]}
       </Grid>
-      <Grid item xs={12} sm={12}>
+      <Grid item xs={12} sm={12} className={classes.backButton}>
           <div align="center">
             <Button
               color="inherit"
@@ -151,7 +159,7 @@ export default function HorizontalLinearStepper() {
       </Grid>
       </div>
       </Grid>
-      <Grid item xs={12} sm={12}>
+      <Grid item xs={12} sm={12} className={classes.footer}>
         <Footer />
       </Grid>
     </Grid>

@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
       borderColor: "blue !important"
     }
   },
-  firstCard: {
-
+  cards: {
+    marginTop: theme.spacing(7),
   },
   title: {
     fontSize: 14,
@@ -38,8 +38,8 @@ export default function OnboardingCardCheating (props) {
           Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.
        </Typography>
       </Grid>
-      <Grid item xs={12} sm={6} className={classes.firstCard}>
-      <div align="right">
+      <Grid item xs={12} sm={6} className={classes.cards}>
+      <div align="center">
         <Link onClick={props.event} underline="none">
           <Card className={classes.card} variant="outlined" style={{textAlign: "left"}}>
             <CardContent>
@@ -54,8 +54,8 @@ export default function OnboardingCardCheating (props) {
         </Link>
         </div>
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <div align="left">
+      <Grid item xs={12} sm={6} className={classes.cards}>
+        <div align="center">
         <Link onClick={props.event} underline="none">
           <Card className={classes.card} variant="outlined">
             <CardContent>
