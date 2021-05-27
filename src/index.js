@@ -12,6 +12,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
+import Home from './Home'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route exact path="/base" component={BaseTemplate} />
           <Route exact path="/example" component={Example} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/" component={App} />
     </Router>
   </React.StrictMode>,
