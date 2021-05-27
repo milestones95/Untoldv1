@@ -83,7 +83,7 @@ const Navbar = props => (
     <ButtonAppBarCollapse>
       <Grid container rows spacing={3}>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href="/">Home</Link>
+          <Link href="/home">Home</Link>
         </Grid>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           <Link href='#'>How It Works</Link>
@@ -109,7 +109,7 @@ const Navbar = props => (
         </Grid>
         <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
           <Typography className={props.classes.links}>
-            <Link href="/" >Home</Link>
+            <Link href="/home" >Home</Link>
             <Link href='#'>How It Works</Link>
             <Link href='/examplestory'>Example Story</Link>
           </Typography>
