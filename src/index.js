@@ -11,6 +11,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import BaseTemplate from "./BaseTemplate";
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
+<<<<<<< HEAD
+import Example from './TailWindTest'
+import HorizontalLinearStepper from './Stepper'
+import Home from './Home'
+=======
+>>>>>>> cbdb16dc4c32708cb6cd7ef016deb8e685e1dc13
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +26,9 @@ ReactDOM.render(
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/base" component={BaseTemplate} />
+          <Route exact path="/example" component={Example} />
+          <Route exact path="/onboarding" component={HorizontalLinearStepper} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/" component={App} />
     </Router>
   </React.StrictMode>,
