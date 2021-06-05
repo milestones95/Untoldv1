@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "transparent",
   },
 }));
 
-export default function ContactCard () {
+export default function HowItWorks () {
   const classes = useStyles();
 
   return (

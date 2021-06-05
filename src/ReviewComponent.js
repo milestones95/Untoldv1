@@ -16,9 +16,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
-    background: "transparent",
+    background: "grey",
     width: "90%",
-    textColor: "white",
     display: 'flex',
     '& > *': {
       margin: theme.spacing(1),
@@ -38,6 +37,15 @@ const styles = theme => ({
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
+  cardStyles: {
+    borderWidth: 0, // Remove Border
+    shadowColor: 'rgba(0,0,0, 0.0)', // Remove Shadow IOS
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0 ,// This is for Android,
+    background: "grey"
+  }
 });
 
 
@@ -75,7 +83,7 @@ class ReviewComponent extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Card variant="outlined" direction="column">
+      <Card variant="outlined" direction="column" className={classes.cardStyles}>
           <Grid container spacing={3}>
           <Grid item xs={12} sm={12}>
             <div align="center">

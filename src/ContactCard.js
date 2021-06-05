@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 const useStyles = makeStyles(theme => ({
   root: {
     background: "#4338cb",
-    width: "90%",
+    width: "70%",
     textColor: "white"
   },
   text: {

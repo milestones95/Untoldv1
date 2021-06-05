@@ -24,8 +24,29 @@ import Divider from '@material-ui/core/Divider';
 import JumboTron from './JumboTron';
 
 const useStyles = makeStyles(theme => ({
-  contactCard: {
-    marginTop: theme.spacing(10)
+  root:{
+    background: "white",
+  },
+  jumboTronSection: {
+    marginTop: theme.spacing(20),
+    background: "grey",
+    border: "grey"
+  },
+  reviewSection: {
+    marginTop: theme.spacing(20),
+    background: "grey"
+  },
+  nyomiStoryAndReview: {
+    marginTop: theme.spacing(8),
+  },
+  howItWorks: {
+    marginLeft: theme.spacing(8),
+  },
+  buyButton: {
+    width: "89%"
+  },
+  divider: {
+    width: "40%"
   },
 }));
 
@@ -33,20 +54,20 @@ export default function HorizontalLinearStepper() {
   const classes = useStyles();
 
     return (
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.root}>
         <Grid item xs={12} sm={12}>
           <Navbar />
          </Grid>
-         <Grid item xs={12} sm={12} className={classes.contactCard}>
+         <Grid item xs={12} sm={12} className={classes.jumboTronSection}>
            <JumboTron />
          </Grid>
-         <Grid item xs={12} sm={12} className={classes.contactCard}>
+         <Grid item xs={12} sm={12} className={classes.reviewSection}>
            <ReviewComponent />
          </Grid>
-          <Grid item xs={12} sm={12} className={classes.contactCard}>
+          <Grid item xs={12} sm={12} className={classes.nyomiStoryAndReview}>
             <NyomiStoryAndReview />
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item xs={12} sm={8} className={classes.howItWorks}>
             <Typography variant="h6" >
               Everything you need for $99 a month
             </Typography>
@@ -56,14 +77,16 @@ export default function HorizontalLinearStepper() {
           </Grid>
           <Grid item xs={12} sm={2}>
             <div align="left">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" className={classes.buyButton}>
                 Get started today
               </Button>
             </div>
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={12} className={classes.howItWorks}>
             <div align="center">
-             <Divider light />
+             <Divider light className={classes.divider} />
+            </div>
+            <div align="center">
               <HowItWorks />
             </div>
           </Grid>

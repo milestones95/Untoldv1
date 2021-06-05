@@ -10,13 +10,16 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  root: {
+    background: "grey"
+  }
 }));
 
 export default function ContactCard () {
   const classes = useStyles();
 
   return (
-      <Grid container spacing={3} direction="columns">
+      <Grid container spacing={3} direction="columns" className={classes.root}>
         <Grid item xs={12} sm={12}>
           <div align="center">
             <Typography variant="h2">

@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     color: "black",
+    marginDown: theme.spacing(0)
   },
   input: {
     background: "white",
@@ -35,13 +36,22 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(30),
     height: theme.spacing(30),
   },
+  cardStyles: {
+    borderWidth: 0, // Remove Border
+    shadowColor: 'rgba(0,0,0, 0.0)', // Remove Shadow IOS
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0, // This is for Android
+    background: "transparent"
+  }
 }));
 
 export default function ContactCard () {
   const classes = useStyles();
 
   return (
-  <Card variant="outlined">
+  <Card variant="outlined" className={classes.cardStyles}>
     <CardContent>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4} className={classes.text}>

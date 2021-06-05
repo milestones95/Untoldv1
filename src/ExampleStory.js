@@ -1,5 +1,4 @@
 import { Typography } from '@material-ui/core';
-import BaseTemplate from "./BaseTemplate";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "./Navbar";
