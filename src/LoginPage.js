@@ -74,8 +74,8 @@ const LoginPage = () => {
                   text: "An email has been sent to you for verification!",
               });
           }
-          history.push("/profile")
-
+          history.push("/billing");
+          //console.log("billing");
       };
   return (
     <Grid container spacing={3}>

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import SignUp from "./SignupPage";
 import LoginPage from "./LoginPage";
 import ExampleStory from "./ExampleStory";
-import Profile from "./Profile";
+import {CheckoutForm }from "./Stripe/CheckoutForm";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import BaseTemplate from "./BaseTemplate";
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -15,12 +15,13 @@ import blue from '@material-ui/core/colors/blue';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+          <Route exact path="/" component={SignUp} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/billing" component={App} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/base" component={BaseTemplate} />
-          <Route exact path="/" component={App} />
+          {/* <Route exact path="/" component={App} /> */}
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
