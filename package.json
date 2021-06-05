@@ -9,7 +9,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/styles": "^4.11.4",
-    "@supabase/supabase-js": "^1.11.16",
+    "@supabase/supabase-js": "^1.13.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -20,6 +20,7 @@
     "react-hook-form": "^7.6.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "supabase": "^0.4.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -48,6 +49,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   }
 }

@@ -16,8 +16,7 @@ import Footer from "./Footer";
 import { supabase } from "./api/supabaseClient";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
-
-
+import { useAuth } from './Auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,34 +48,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LoginPage = () => {
+export default function LoginPage() {
       const [helperText, setHelperText] = useState({ error: null, text: null });
       const emailRef = useRef();
       const passwordRef = useRef();
       const classes = useStyles();
       const history = useHistory() // imported from react-router!
+      const { signIn } = useAuth()
 
-      const handleLogin = async (type) => {
-          const email = emailRef.current?.value;
-          const password = passwordRef.current?.value;
+  async function handleLogin(e) {
+    e.preventDefault()
 
-          const { user, error } =
-              type === "LOGIN"
-                  ? await supabase.auth.signIn({ email, password })
-                  : await supabase.auth.signUp({ email, password });
+    // Get email and password input values
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
 
-          if (error) {
-              setHelperText({ error: true, text: error.message });
-          } else if (!user && !error) {
+    // Calls `signIn` function from the context
+    const { error } = await signIn({ email, password })
 
-              setHelperText({
-                  error: false,
-                  text: "An email has been sent to you for verification!",
-              });
-          }
-          history.push("/profile")
+    if (error) {
+      alert('error signing in')
+    } else {
+      history.push('/profile')
+    }
+  }
 
-      };
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -130,9 +126,7 @@ const LoginPage = () => {
 
           <Button
            type="submit"
-           onClick={() =>
-               handleLogin("LOGIN").catch(console.error)
-           }
+           onClick={handleLogin}
            className={classes.submit}
            fullWidth
            variant="contained"
@@ -161,7 +155,5 @@ const LoginPage = () => {
     <Footer />
     </Grid>
   </Grid>
-  );
+  )
 };
-
-export default LoginPage;
