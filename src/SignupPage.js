@@ -18,7 +18,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import { supabase } from "./api/supabaseClient";
 import { useForm } from "react-hook-form";
-
+import { useAuth } from './Auth'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -57,54 +58,27 @@ const SignUp = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const classes = useStyles();
+    const { signUp } = useAuth()
+    const history = useHistory()
 
-    const handleLogin = async (type) => {
-        const email = emailRef.current?.value;
-        const password = passwordRef.current?.value;
+    async function handleSignUp(e) {
+      e.preventDefault()
 
-        const { user, error } =
-            type === "LOGIN"
-                ? await supabase.auth.signIn({ email, password })
-                : await supabase.auth.signUp({ email, password });
+      // Get email and password input values
+      const email = emailRef.current.value
+      const password = passwordRef.current.value
 
-        if (error) {
-            setHelperText({ error: true, text: error.message });
-        } else if (!user && !error) {
-            setHelperText({
-                error: false,
-                text: "An email has been sent to you for verification!",
-            });
-        }
-    };
+      // Calls `signUp` function from the context
+      const { error } = await signUp({ email, password })
 
-    const handleOAuthLogin = async (provider) => {
-        // You need to enable the third party auth you want in Authentication > Settings
-        // Read more on: https://supabase.io/docs/guides/auth#third-party-logins
-        let { error } = await supabase.auth.signIn({ provider });
-        if (error) console.log("Error: ", error.message);
-    };
-
-    const forgotPassword = async (e) => {
-        // Read more on https://supabase.io/docs/reference/javascript/reset-password-email#notes
-        e.preventDefault();
-        const email = prompt("Please enter your email:");
-
-        if (email === null || email === "") {
-            setHelperText({ error: true, text: "You must enter your email." });
-        } else {
-            let { error } = await supabase.auth.api.resetPasswordForEmail(
-                email
-            );
-            if (error) {
-                console.error("Error: ", error.message);
-            } else {
-                setHelperText({
-                    error: false,
-                    text: "Password recovery email has been sent.",
-                });
-            }
-        }
-    };
+      if (error) {
+        alert('error signing in')
+      } else {
+        // Redirect user to Dashboard
+        alert('Your account was created! Check your email')
+        history.push('/login')
+      }
+    }
 
     return (
           <Grid container spacing={10}>
@@ -170,9 +144,7 @@ const SignUp = () => {
 
                       <Button
                           type="submit"
-                          onClick={() =>
-                              handleLogin("REGISTER").catch(console.error)
-                          }
+                          onClick={handleSignUp}
                           className={classes.submit}
                           fullWidth
                           variant="contained"
