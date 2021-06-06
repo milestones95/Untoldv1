@@ -14,21 +14,26 @@ import blue from '@material-ui/core/colors/blue';
 import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
 import Home from './Home'
+<<<<<<< HEAD
 import WriterUploadStory from './WriterUploadStory'
+=======
+import AuthProvider from './Auth'
+import PrivateRoute from './PrivateRoute'
+>>>>>>> master
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+        <AuthProvider>
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
-          <Route exact path="/base" component={BaseTemplate} />
-          <Route exact path="/example" component={Example} />
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/" component={App} />
+        </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

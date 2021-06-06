@@ -8,6 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
+import { supabase } from "./api/supabaseClient";
+import { useAuth } from './Auth'
+import { useHistory } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -43,6 +46,8 @@ const styles = theme => ({
   }
 });
 
+const AuthContext = React.createContext()
+
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -57,6 +62,48 @@ function ElevationScroll(props) {
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
   });
+}
+
+function NavBarButton() {
+
+  const { user, signOut } = useAuth()
+  const history = useHistory()
+
+  async function handleSignOut() {
+    // Ends user session
+    await signOut()
+    history.push('/login')
+  }
+
+  console.log(user);
+  if (user) {
+    return (
+      <Button variant="contained" color="secondary" onClick={handleSignOut}
+        >Sign Out</Button>
+    )
+  }
+  else{
+    return (
+      <Button variant="contained" color="secondary" href="/signup">Sign Up</Button>
+    )
+  }
+}
+
+function DisableLoginButton() {
+
+  const { user } = useAuth()
+
+  console.log(user);
+  if (!(user)) {
+    return (
+      <Link href="/login">Sign In</Link>
+    )
+  }
+  else{
+    return (
+      null
+    )
+  }
 }
 
 ElevationScroll.propTypes = {
@@ -83,13 +130,10 @@ const Navbar = props => (
           <Link href='/examplestory'>Example Story</Link>
         </Grid>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href="/login">Sign In</Link>
+          {DisableLoginButton()}
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" color="secondary" href="/signup" style={{
-              width: "100%",
-              height: "100%"
-            }}>SignUp</Button>
+          {NavBarButton()}
         </Grid>
       </Grid>
     </ButtonAppBarCollapse>
@@ -107,12 +151,11 @@ const Navbar = props => (
         </Grid>
         <Grid item lg={1} sm={1}>
               <Typography className={props.classes.links}>
-                 <Link href="/login">Sign In</Link>
+                {DisableLoginButton()}
               </Typography>
         </Grid>
-        <Grid item lg={1} sm={1} style={{textAlign: "left"}}>
-          <Button variant="contained" color="secondary" href="/signup"
-            className={props.classes.signUpButton}>SignUp</Button>
+        <Grid item lg={1} sm={1} style={{textAlign: "left"}} className={props.classes.signUpButton}>
+          {NavBarButton()}
         </Grid>
         </Grid>
     </div>
