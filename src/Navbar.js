@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
 import { supabase } from "./api/supabaseClient";
 import { useAuth } from './Auth'
+import { useHistory } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -66,24 +67,41 @@ function ElevationScroll(props) {
 function NavBarButton() {
 
   const { user, signOut } = useAuth()
+  const history = useHistory()
 
   async function handleSignOut() {
     // Ends user session
     await signOut()
-
+    history.push('/login')
   }
 
-  const isSignedIn = supabase.auth.user()
-
+  console.log(user);
   if (user) {
     return (
-      <Button variant="contained" color="secondary" href="/home" onClick={handleSignOut}
+      <Button variant="contained" color="secondary" onClick={handleSignOut}
         >Sign Out</Button>
     )
   }
   else{
     return (
       <Button variant="contained" color="secondary" href="/signup">Sign Up</Button>
+    )
+  }
+}
+
+function DisableLoginButton() {
+
+  const { user } = useAuth()
+
+  console.log(user);
+  if (!(user)) {
+    return (
+      <Link href="/login">Sign In</Link>
+    )
+  }
+  else{
+    return (
+      null
     )
   }
 }
@@ -112,7 +130,7 @@ const Navbar = props => (
           <Link href='/examplestory'>Example Story</Link>
         </Grid>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href="/login">Sign In</Link>
+          {DisableLoginButton()}
         </Grid>
         <Grid item xs={12}>
           {NavBarButton()}
@@ -133,7 +151,7 @@ const Navbar = props => (
         </Grid>
         <Grid item lg={1} sm={1}>
               <Typography className={props.classes.links}>
-                 <Link href="/login">Sign In</Link>
+                {DisableLoginButton()}
               </Typography>
         </Grid>
         <Grid item lg={1} sm={1} style={{textAlign: "left"}} className={props.classes.signUpButton}>
