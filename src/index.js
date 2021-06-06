@@ -16,6 +16,7 @@ import HorizontalLinearStepper from './Stepper'
 import Home from './Home'
 import AuthProvider from './Auth'
 import PrivateRoute from './PrivateRoute'
+import BrowsePage from './BrowsePage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,6 +29,7 @@ ReactDOM.render(
             <Route exact path="/onboarding" component={HorizontalLinearStepper} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/" component={App} />
+            <Route exact path="/browse" component={BrowsePage} />
           </AuthProvider>
     </Router>
   </React.StrictMode>,
