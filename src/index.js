@@ -14,12 +14,9 @@ import blue from '@material-ui/core/colors/blue';
 import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
 import Home from './Home'
-<<<<<<< HEAD
 import WriterUploadStory from './WriterUploadStory'
-=======
 import AuthProvider from './Auth'
 import PrivateRoute from './PrivateRoute'
->>>>>>> master
 
 ReactDOM.render(
   <React.StrictMode>

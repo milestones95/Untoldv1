@@ -9,6 +9,7 @@ class WriterUploadStory extends React.Component{
     this.state = {
       story: '',
       partner_name: '',
+      lover_name: '',
       name: '',
       newStory: ''
     };
@@ -30,10 +31,11 @@ class WriterUploadStory extends React.Component{
   handleSubmit(event) {
     const originalStory = this.state.story;
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
-    var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.partner_name, "{Partner_Name}");
-
+    var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
+    var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
+    
     this.setState({
-      newStory: resWithNameAndPartnerTemplate
+      newStory: resWithLoverNameTemplate
     });
     event.preventDefault();
 
@@ -47,6 +49,8 @@ class WriterUploadStory extends React.Component{
           <input name="name" type="text"  onChange={this.handleChange} />
           <p>Partner's name</p>
           <input name="partner_name" type="text" onChange={this.handleChange} />
+          <p>Lover's name</p>
+          <input name="lover_name" type="text" onChange={this.handleChange} />
           <p>Story</p>
           <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
           <input type="submit" value="Submit" />
