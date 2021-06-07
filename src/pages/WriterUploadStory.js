@@ -2,8 +2,8 @@ import React from "react";
 import { Typography } from '@material-ui/core';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import { supabase } from "./api/supabaseClient";
-import { useAuth } from './Auth/Auth';
+import { supabase } from "../api/supabaseClient";
+import { useAuth } from '../Auth/Auth';
 
 class WriterUploadStory extends React.Component{
   constructor(props) {

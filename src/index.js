@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SignUp from "./SignupPage";
-import LoginPage from "./LoginPage";
-import ExampleStory from "./ExampleStory";
-import Profile from "./Profile";
+import SignUp from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+import ExampleStory from "./pages/ExampleStory";
+import Profile from "./pages/Profile";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import BaseTemplate from "./BaseTemplate";
+import BaseTemplate from "./templates/BaseTemplate";
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
-import Home from './Home'
-import WriterUploadStory from './WriterUploadStory'
+import Home from './pages/Home'
+import WriterUploadStory from './pages/WriterUploadStory'
 import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
 
