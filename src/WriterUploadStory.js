@@ -23,7 +23,6 @@ class WriterUploadStory extends React.Component{
     // const target = event.target;
     const value = event.target.value;
     const name = event.target.name;
-    console.log("I was triggered");
     this.setState({
       [name]: value
     });
