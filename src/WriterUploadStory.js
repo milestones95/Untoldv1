@@ -7,6 +7,7 @@ class WriterUploadStory extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      category: '',
       story: '',
       partner_name: '',
       lover_name: '',
@@ -22,7 +23,7 @@ class WriterUploadStory extends React.Component{
     // const target = event.target;
     const value = event.target.value;
     const name = event.target.name;
-
+    console.log("I was triggered");
     this.setState({
       [name]: value
     });
@@ -33,7 +34,7 @@ class WriterUploadStory extends React.Component{
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
     var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
     var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
-    
+
     this.setState({
       newStory: resWithLoverNameTemplate
     });
@@ -42,26 +43,93 @@ class WriterUploadStory extends React.Component{
   }
 
   render() {
-      return (
-        <div>
-        <form onSubmit={this.handleSubmit}>
-          <p>Name</p>
-          <input name="name" type="text"  onChange={this.handleChange} />
-          <p>Partner's name</p>
-          <input name="partner_name" type="text" onChange={this.handleChange} />
-          <p>Lover's name</p>
-          <input name="lover_name" type="text" onChange={this.handleChange} />
-          <p>Story</p>
-          <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-          <input type="submit" value="Submit" />
+     return (
+       <div>
+           <form onSubmit={this.handleSubmit}>
+             <label>
+               Choose category:
+               <select name="category" value={this.state.category} onChange={this.handleChange}>
+                 <option value="default">Select a category</option>
+                 <option value="cheating">Cheating</option>
+                 <option value="cheated_on">Cheated On</option>
+                 <option value="bdsm">BDSM</option>
+                 <option value="romance">Romance</option>
+               </select>
+             </label>
+             {(()=>{
+              switch(this.state.category)
+              {
+                case "cheating":
+                  return (
+                    <div>
+                        <p>Name</p>
+                        <input name="name" type="text"  onChange={this.handleChange} />
+                        <p>Partner's name</p>
+                        <input name="partner_name" type="text" onChange={this.handleChange} />
+                        <p>Lover's name</p>
+                        <input name="lover_name" type="text" onChange={this.handleChange} />
+                        <p>Story</p>
+                        <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                        <input type="submit" value="Submit" />
+                    <div>
+                      <p> {this.state.newStory}</p>
+                    </div>
+                  </div>
+                  );
+                  case "cheated_on":
+                    return (
+                      <div>
+                          <p>Name</p>
+                          <input name="name" type="text"  onChange={this.handleChange} />
+                          <p>Partner's name</p>
+                          <input name="partner_name" type="text" onChange={this.handleChange} />
+                          <p>Lover's name</p>
+                          <input name="lover_name" type="text" onChange={this.handleChange} />
+                          <p>Story</p>
+                          <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                          <input type="submit" value="Submit" />
+                      <div>
+                        <p> {this.state.newStory}</p>
+                      </div>
+                    </div>
+                    );
+                  case "bdsm":
+                    return (
+                      <div>
+                          <p>Dom</p>
+                          <input name="name" type="text"  onChange={this.handleChange} />
+                          <p>Sub</p>
+                          <input name="partner_name" type="text" onChange={this.handleChange} />
+                          <p>Story</p>
+                          <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                          <input type="submit" value="Submit" />
+                      <div>
+                        <p> {this.state.newStory}</p>
+                      </div>
+                    </div>
+                    );
+                    case "romance":
+                      return (
+                        <div>
+                            <p>Name</p>
+                            <input name="name" type="text"  onChange={this.handleChange} />
+                            <p>Partner name</p>
+                            <input name="partner_name" type="text" onChange={this.handleChange} />
+                            <p>Story</p>
+                            <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                            <input type="submit" value="Submit" />
+                        <div>
+                          <p> {this.state.newStory}</p>
+                        </div>
+                      </div>
+                      );
+                  }
+                })()}
         </form>
-
-        <div>
-          <p> {this.state.newStory}</p>
-        </div>
       </div>
       );
     }
+
 }
 
 export default WriterUploadStory;

@@ -14,7 +14,9 @@ import blue from '@material-ui/core/colors/blue';
 import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
 import Home from './Home'
+import WriterForm from './Forms/WriterForm'
 import WriterUploadStory from './WriterUploadStory'
+// import Form from './WriterUploadStory1'
 import AuthProvider from './Auth'
 import PrivateRoute from './PrivateRoute'
 
@@ -29,6 +31,8 @@ ReactDOM.render(
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/uploadForm" component={WriterForm} />
+          {/* <Route exact path="/form" component={Form} /> */}
           <Route exact path="/" component={App} />
         </AuthProvider>
     </Router>
