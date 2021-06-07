@@ -12,16 +12,16 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../templates/Navbar";
+import Footer from "../templates/Footer";
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import ContactCard from './ContactCard'
-import NyomiStoryAndReview from './NyomiStoryAndReview'
-import ReviewComponent from './ReviewComponent'
+import ContactCard from '../ContactCard'
+import NyomiStoryAndReview from '../NyomiStoryAndReview'
+import ReviewComponent from '../ReviewComponent'
 import HowItWorks from './HowItWorks'
 import Divider from '@material-ui/core/Divider';
-import JumboTron from './JumboTron';
+import JumboTron from '../JumboTron';
 
 const useStyles = makeStyles(theme => ({
   root:{
