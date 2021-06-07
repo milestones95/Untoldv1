@@ -9,7 +9,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
 import { supabase } from "./api/supabaseClient";
-import { useAuth } from './Auth'
+import { useAuth } from './Auth/Auth'
 import { useHistory } from 'react-router-dom'
 
 const styles = theme => ({

@@ -18,7 +18,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import { supabase } from "./api/supabaseClient";
 import { useForm } from "react-hook-form";
-import { useAuth } from './Auth'
+import { useAuth } from './Auth/Auth'
 import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({

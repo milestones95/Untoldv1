@@ -2,18 +2,24 @@ import React from "react";
 import { Typography } from '@material-ui/core';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import { supabase } from "./api/supabaseClient";
+import { useAuth } from './Auth/Auth';
 
 class WriterUploadStory extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       category: '',
+      orientation: '',
+      gender: '',
+      story_name: '',
       story: '',
       partner_name: '',
       lover_name: '',
       name: '',
       newStory: ''
     };
+    // const { session } = useAuth();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +34,7 @@ class WriterUploadStory extends React.Component{
     });
   }
 
-  handleSubmit(event) {
+   handleSubmit = async(event) =>{
     const originalStory = this.state.story;
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
     var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
@@ -38,6 +44,28 @@ class WriterUploadStory extends React.Component{
       newStory: resWithLoverNameTemplate
     });
     event.preventDefault();
+
+    try {
+     //   setSaved(false)
+     // setIsSubmitting(true);
+     const { error } = await supabase
+       .from('writer_stories').insert({
+       id: 12,
+       story_name: 'this.state.story_name',
+       content: 'this.state.story',
+       orientation: 'this.state.orientation',
+       category_id: 2,
+       gender: 'this.state.gender',
+       writer_id: /1b61551d-9dae-45de-bcc2-624fd9bbe3de/
+     });
+     if(!error) {
+       // setSaved(true)
+     }
+   } catch (err) {
+     console.error(err);
+   } finally {
+     // setIsSubmitting(false);
+   }
 
   }
 
@@ -55,6 +83,16 @@ class WriterUploadStory extends React.Component{
                  <option value="romance">Romance</option>
                </select>
              </label>
+             <div>
+               <p>Story name</p>
+               <input name="story_name" type="text"  onChange={this.handleChange} />
+               <p>Story</p>
+               <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+               <p>Orientation</p>
+               <input name="orientation" type="text"  onChange={this.handleChange} />
+               <p>Gender of main character</p>
+               <input name="gender" type="text"  onChange={this.handleChange} />
+             </div>
              {(()=>{
               switch(this.state.category)
               {
@@ -67,12 +105,6 @@ class WriterUploadStory extends React.Component{
                         <input name="partner_name" type="text" onChange={this.handleChange} />
                         <p>Lover's name</p>
                         <input name="lover_name" type="text" onChange={this.handleChange} />
-                        <p>Story</p>
-                        <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-                        <input type="submit" value="Submit" />
-                    <div>
-                      <p> {this.state.newStory}</p>
-                    </div>
                   </div>
                   );
                   case "cheated_on":
@@ -84,12 +116,6 @@ class WriterUploadStory extends React.Component{
                           <input name="partner_name" type="text" onChange={this.handleChange} />
                           <p>Lover's name</p>
                           <input name="lover_name" type="text" onChange={this.handleChange} />
-                          <p>Story</p>
-                          <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-                          <input type="submit" value="Submit" />
-                      <div>
-                        <p> {this.state.newStory}</p>
-                      </div>
                     </div>
                     );
                   case "bdsm":
@@ -99,12 +125,6 @@ class WriterUploadStory extends React.Component{
                           <input name="name" type="text"  onChange={this.handleChange} />
                           <p>Sub</p>
                           <input name="partner_name" type="text" onChange={this.handleChange} />
-                          <p>Story</p>
-                          <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-                          <input type="submit" value="Submit" />
-                      <div>
-                        <p> {this.state.newStory}</p>
-                      </div>
                     </div>
                     );
                     case "romance":
@@ -116,14 +136,11 @@ class WriterUploadStory extends React.Component{
                             <input name="partner_name" type="text" onChange={this.handleChange} />
                             <p>Story</p>
                             <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-                            <input type="submit" value="Submit" />
-                        <div>
-                          <p> {this.state.newStory}</p>
-                        </div>
                       </div>
                       );
                   }
                 })()}
+          <input type="submit" value="Submit" />
         </form>
       </div>
       );

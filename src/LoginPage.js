@@ -16,7 +16,7 @@ import Footer from "./Footer";
 import { supabase } from "./api/supabaseClient";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
-import { useAuth } from './Auth'
+import { useAuth } from './Auth/Auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
