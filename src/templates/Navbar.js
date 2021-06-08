@@ -75,7 +75,7 @@ function NavBarButton() {
     history.push('/login')
   }
 
-  console.log(user);
+  // console.log(user);
   if (user) {
     return (
       <Button variant="contained" color="secondary" onClick={handleSignOut}
@@ -93,7 +93,7 @@ function DisableLoginButton() {
 
   const { user } = useAuth()
 
-  console.log(user);
+  // console.log(user);
   if (!(user)) {
     return (
       <Link href="/login">Sign In</Link>
