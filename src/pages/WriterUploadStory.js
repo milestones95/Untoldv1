@@ -4,7 +4,9 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { supabase } from "../api/supabaseClient";
 import { useAuth } from '../Auth/Auth';
+import Link from '@material-ui/core/Link';
 
+// import WriterNavbar from "../templates/Navbar";
 class WriterUploadStory extends React.Component{
   constructor(props) {
     super(props);
@@ -19,7 +21,6 @@ class WriterUploadStory extends React.Component{
       name: '',
       newStory: ''
     };
-    // const { session } = useAuth();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,19 +40,15 @@ class WriterUploadStory extends React.Component{
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
     var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
     var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
-
-    this.setState({
-      newStory: resWithLoverNameTemplate
-    });
     event.preventDefault();
 
     try {
       const session = supabase.auth.session()
-
+      console.log("new story: " + this.state.newStory);
      const { error } = await supabase
        .from('writer_stories').insert({
        story_name: this.state.story_name,
-       content: this.state.story,
+       content: resWithLoverNameTemplate,
        orientation: this.state.orientation,
        category_id: this.state.category,
        gender: this.state.gender,
@@ -77,7 +74,11 @@ class WriterUploadStory extends React.Component{
 
   render() {
      return (
+
        <div>
+         <Link href='/WriterUploadStory'>Home</Link>
+         <Link href='/writerLibrary'>Library</Link>
+
          <h1>Writer Upload Story Page</h1>
            <form onSubmit={this.handleSubmit}>
              <label>
