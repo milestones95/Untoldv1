@@ -53,7 +53,7 @@ class UserStoryLibrary extends React.Component{
       <div>
         {this.state.stories &&
           this.state.stories.map((stories, index) => (
-        <Link to="/" key={stories.story_id}>
+        <Link to={"/storypage/" + stories.id} key={stories.id}>
           <span>
             <li key={index}>{stories.story_name}</li>
           </span>

@@ -16,6 +16,7 @@ import HorizontalLinearStepper from './Stepper'
 import Home from './pages/Home'
 import UserStoryLibrary from './pages/UserStoryLibrary'
 import UserStoryPage from './pages/UserStoryPage'
+import UserStoryRequest from './pages/UserStoryRequest'
 import WriterUploadStory from './pages/WriterUploadStory'
 import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
@@ -29,6 +30,7 @@ ReactDOM.render(
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
+          <Route exact path="/requestStory" component={UserStoryRequest} />
           <Route exact path="/userlibrary" component={UserStoryLibrary} />
           <Route exact path="/storypage/:slug" component={UserStoryPage} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
