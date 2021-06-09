@@ -10,26 +10,26 @@ import { useAuth } from '../Auth/Auth'
 import { Redirect } from "react-router";
 import { Link } from 'react-router-dom'
 
-class UserStoryLibrary extends React.Component{
+class UserRequestStatusListView extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
-        stories: [],
+        requests: [],
         isFetching: false
     };
   }
 
-  async loadStories(session){
+  async loadrequests(session){
 
     try {
 
         this.setState({...this.state, isFetching : true});
         let { data, error } = await supabase
-            .from('user_story')
+            .from('writer_story_request')
             .select('*')
             .eq('user_id', session.user.id)
 
-        this.setState({stories: data, isFetching : false});
+        this.setState({requests: data, isFetching : false});
 
     } catch (err) {
       console.error(err);
@@ -38,18 +38,18 @@ class UserStoryLibrary extends React.Component{
 
    componentDidMount(){
     const session = supabase.auth.session()
-    this.loadStories(session)
+    this.loadrequests(session)
 
  }
 
   render(){
     return(
       <div>
-        {this.state.stories &&
-          this.state.stories.map((stories, index) => (
-        <Link to={"/storypage/" + stories.id} key={stories.id}>
+        {this.state.requests &&
+          this.state.requests.map((requests, index) => (
+        <Link to={"/requestDetails/" + requests.id} key={requests.id}>
           <span>
-            <li key={index}>{stories.story_name}</li>
+            <li key={index}>{requests.category_id}</li>
           </span>
         </Link>
       ))}
@@ -59,4 +59,4 @@ class UserStoryLibrary extends React.Component{
 }
 
 
-export default UserStoryLibrary;
+export default UserRequestStatusListView;
