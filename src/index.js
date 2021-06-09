@@ -40,7 +40,7 @@ ReactDOM.render(
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
           {/* <Route exact path="/form" component={Form} /> */}
-          <Route exact path="/" component={App} />
+          <Route exact path="/" component={Home} />
         </AuthProvider>
     </Router>
   </React.StrictMode>,
