@@ -19,7 +19,6 @@ class UserStoryRequest extends React.Component{
       newStory: '',
       is_completed: false
     };
-    // const { session } = useAuth();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -120,10 +119,25 @@ class UserStoryRequest extends React.Component{
                   }
                 })()}
                 <div>
-                  <p>Orientation</p>
-                  <input name="orientation" type="text"  onChange={this.handleChange} />
-                  <p>Gender of main character</p>
-                  <input name="gender" type="text"  onChange={this.handleChange} />
+                  <label>
+                    Sexual orientation of main character
+                    <select name="orientation" value={this.state.orientation} onChange={this.handleChange}>
+                      <option value="0">Select gender</option>
+                      <option value="1">Heterosexual</option>
+                      <option value="2">Homosexual</option>
+                      <option value="3">Bisexual</option>
+                    </select>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Gender of main character
+                    <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+                      <option value="0">Select gender</option>
+                      <option value="1">M</option>
+                      <option value="2">F</option>
+                    </select>
+                  </label>
                   <p>Additional details</p>
                   <input name="additional_details" type="text"  onChange={this.handleChange} />
                 </div>
