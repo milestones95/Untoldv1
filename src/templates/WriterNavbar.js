@@ -121,14 +121,14 @@ const WriterNavbar = props => (
     <ButtonAppBarCollapse>
       <Grid container rows spacing={3}>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href="/home">Home</Link>
+          <Link href="/WriterUploadStory">Home</Link>
         </Grid>
-        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+        {/* <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           <Link href='#'>How It Works</Link>
         </Grid>
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           <Link href='/examplestory'>Example Story</Link>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           {DisableLoginButton()}
         </Grid>
@@ -144,9 +144,9 @@ const WriterNavbar = props => (
         </Grid>
         <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
           <Typography className={props.classes.links}>
-            <Link href="/home" >Home</Link>
-            <Link href='#'>How It Works</Link>
-            <Link href='/examplestory'>Example Story</Link>
+            <Link href="/WriterUploadStory" >Home</Link>
+            {/* <Link href='#'>How It Works</Link>
+            <Link href='/examplestory'>Example Story</Link> */}
           </Typography>
         </Grid>
         <Grid item lg={1} sm={1}>

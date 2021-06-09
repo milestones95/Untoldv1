@@ -15,6 +15,8 @@ import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
 import Home from './pages/Home'
 import UserStoryLibrary from './pages/UserStoryLibrary'
+import WriterStoryLibrary from './pages/WriterStoryLibrary'
+import WriterStoryPage from './pages/WriterStoryPage'
 import UserStoryPage from './pages/UserStoryPage'
 import UserStoryRequest from './pages/UserStoryRequest'
 import UserRequestStatusListView from './pages/UserRequestStatusListView'
@@ -32,6 +34,8 @@ ReactDOM.render(
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
+          <Route exact path="/writerLibrary" component={WriterStoryLibrary} />
+          <Route exact path="/wStoryPage/:slug" component={WriterStoryPage} />
           <Route exact path="/requestStory" component={UserStoryRequest} />
           <Route exact path="/requestStatusListView" component={UserRequestStatusListView} />
           <Route exact path="/requestDetails/:slug" component={UserRequestDetails} />
