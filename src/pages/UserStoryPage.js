@@ -17,7 +17,6 @@ export default function UserStoryPage(){
 
   useEffect(() => {
     getStoryPage()
-    // console.log("slug: " + slug);
     }, []);
 
 

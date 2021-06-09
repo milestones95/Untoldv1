@@ -12,13 +12,12 @@ class UserStoryRequest extends React.Component{
       category: '',
       orientation: '',
       gender: '',
-      story_name: '',
-      story: '',
       partner_name: '',
       lover_name: '',
       additional_details: '',
       name: '',
-      newStory: ''
+      newStory: '',
+      is_completed: false
     };
     // const { session } = useAuth();
 
@@ -36,14 +35,6 @@ class UserStoryRequest extends React.Component{
   }
 
    handleSubmit = async(event) =>{
-    // const originalStory = this.state.story;
-    // var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
-    // var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
-    // var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
-    //
-    // this.setState({
-    //   newStory: resWithLoverNameTemplate
-    // });
     event.preventDefault();
 
     try {
@@ -54,20 +45,17 @@ class UserStoryRequest extends React.Component{
      const { error } = await supabase
        .from('writer_story_request').insert({
        user_id: session?.user.id,
-       story_name: 'this.state.story_name',
-       content: 'this.state.story',
-       orientation: 'this.state.orientation',
-       category_id: 2,
-       gender: 'this.state.gender',
-       additional_details: 'this.state.additional_details'
+       name: this.state.name,
+       partner_name: this.state.partner_name,
+       lover_name: this.state.lover_name,
+       orientation: this.state.orientation,
+       category_id: this.state.category,
+       gender: this.state.gender,
+       additional_details: this.state.additional_details,
+       is_completed: this.state.is_completed
           });
-     if(!error) {
-       // setSaved(true)
-     }
    } catch (err) {
      console.error(err);
-   } finally {
-     // setIsSubmitting(false);
    }
 
   }
@@ -79,17 +67,17 @@ class UserStoryRequest extends React.Component{
              <label>
                Choose category:
                <select name="category" value={this.state.category} onChange={this.handleChange}>
-                 <option value="default">Select a category</option>
-                 <option value="cheating">Cheating</option>
-                 <option value="cheated_on">Cheated On</option>
-                 <option value="bdsm">BDSM</option>
-                 <option value="romance">Romance</option>
+                 <option value="0">Select a category</option>
+                 <option value="2">Cheating</option>
+                 <option value="3">Cheated On</option>
+                 <option value="4">BDSM</option>
+                 <option value="1">Romance</option>
                </select>
              </label>
              {(()=>{
               switch(this.state.category)
               {
-                case "cheating":
+                case "2":
                   return (
                     <div>
                         <p>Name</p>
@@ -100,7 +88,7 @@ class UserStoryRequest extends React.Component{
                         <input name="lover_name" type="text" onChange={this.handleChange} />
                   </div>
                   );
-                  case "cheated_on":
+                  case "3":
                     return (
                       <div>
                           <p>Name</p>
@@ -111,7 +99,7 @@ class UserStoryRequest extends React.Component{
                           <input name="lover_name" type="text" onChange={this.handleChange} />
                     </div>
                     );
-                  case "bdsm":
+                  case "4":
                     return (
                       <div>
                           <p>Dom</p>
@@ -120,15 +108,13 @@ class UserStoryRequest extends React.Component{
                           <input name="partner_name" type="text" onChange={this.handleChange} />
                     </div>
                     );
-                    case "romance":
+                    case "1":
                       return (
                         <div>
                             <p>Name</p>
                             <input name="name" type="text"  onChange={this.handleChange} />
                             <p>Partner name</p>
                             <input name="partner_name" type="text" onChange={this.handleChange} />
-                            <p>Story</p>
-                            <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
                       </div>
                       );
                   }

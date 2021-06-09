@@ -46,8 +46,6 @@ class WriterUploadStory extends React.Component{
     event.preventDefault();
 
     try {
-     //   setSaved(false)
-     // setIsSubmitting(true);
      const { error } = await supabase
        .from('writer_stories').insert({
        id: 12,
@@ -58,13 +56,8 @@ class WriterUploadStory extends React.Component{
        gender: 'this.state.gender',
        writer_id: /1b61551d-9dae-45de-bcc2-624fd9bbe3de/
      });
-     if(!error) {
-       // setSaved(true)
-     }
    } catch (err) {
      console.error(err);
-   } finally {
-     // setIsSubmitting(false);
    }
 
   }
