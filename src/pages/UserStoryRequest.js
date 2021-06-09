@@ -4,6 +4,9 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { supabase } from "../api/supabaseClient";
 import { useAuth } from '../Auth/Auth';
+import Navbar from "../templates/Navbar";
+import { Redirect } from "react-router-dom";
+import Link from '@material-ui/core/Link';
 
 class UserStoryRequest extends React.Component{
   constructor(props) {
@@ -17,7 +20,8 @@ class UserStoryRequest extends React.Component{
       additional_details: '',
       name: '',
       newStory: '',
-      is_completed: false
+      is_completed: false,
+      isAuthorized: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -59,9 +63,31 @@ class UserStoryRequest extends React.Component{
 
   }
 
+  // async componentDidMount()
+  // {
+  //   const session = supabase.auth.session()
+  //
+  //   let { data, error } = await supabase
+  //       .from('users')
+  //       .select('role_id')
+  //       .eq('user_id', session.user.id)
+  //   var role_id = data;
+  //   if(role_id ==2)
+  //   {
+  //     this.setState({
+  //       isAuthorized: true
+  //     });
+  //   }
+  // }
+
   render() {
+    //
+    // if(!this.state.isAuthorized){
+    //   <Redirect to="/login" />
+    // }
      return (
        <div>
+         <Link href='/home'>Home</Link>
            <form onSubmit={this.handleSubmit}>
              <label>
                Choose category:
@@ -144,6 +170,7 @@ class UserStoryRequest extends React.Component{
           <input type="submit" value="Submit" />
         </form>
       </div>
+
       );
     }
 

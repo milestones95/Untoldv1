@@ -68,8 +68,21 @@ export default function LoginPage() {
 
     if (error) {
       alert('error signing in')
-    } else {
-      history.push('/profile')
+    }
+    else {
+      const session = supabase.auth.session()
+      let { data, error } = await supabase
+          .from('users')
+          .select('role_id')
+          .eq('id', session.user.id)
+      var role_id = data[0];
+      if(role_id ==2){
+        history.push('/requestStory')
+      }
+      else{
+        history.push('/WriterUploadStory')
+
+      }
     }
   }
 
