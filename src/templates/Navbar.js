@@ -3,13 +3,13 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from "@material-ui/core/styles";
-import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
+import ButtonAppBarCollapse from "../ButtonAppBarCollapse";
 import Grid from '@material-ui/core/Grid';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
-import { supabase } from "./api/supabaseClient";
-import { useAuth } from './Auth'
+import { supabase } from "../api/supabaseClient";
+import { useAuth } from '../Auth/Auth'
 import { useHistory } from 'react-router-dom'
 
 const styles = theme => ({
@@ -75,7 +75,7 @@ function NavBarButton() {
     history.push('/login')
   }
 
-  console.log(user);
+  // console.log(user);
   if (user) {
     return (
       <Button variant="contained" color="secondary" onClick={handleSignOut}
@@ -93,7 +93,7 @@ function DisableLoginButton() {
 
   const { user } = useAuth()
 
-  console.log(user);
+  // console.log(user);
   if (!(user)) {
     return (
       <Link href="/login">Sign In</Link>

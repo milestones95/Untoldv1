@@ -12,13 +12,13 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../templates/Navbar";
+import Footer from "../templates/Footer";
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import { supabase } from "./api/supabaseClient";
+import { supabase } from "../api/supabaseClient";
 import { useForm } from "react-hook-form";
-import { useAuth } from './Auth'
+import { useAuth } from '../Auth/Auth'
 import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({

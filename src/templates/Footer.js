@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from '@material-ui/core/Divider';
-import { useAuth } from './Auth'
+import { useAuth } from '../Auth/Auth'
 
 const useStyles = makeStyles(theme => ({
   "footer": {

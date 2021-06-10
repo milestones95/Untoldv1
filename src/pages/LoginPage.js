@@ -11,12 +11,12 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { supabase } from "./api/supabaseClient";
+import Navbar from "../templates/Navbar";
+import Footer from "../templates/Footer";
+import { supabase } from "../api/supabaseClient";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
-import { useAuth } from './Auth'
+import { useAuth } from '../Auth/Auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,8 +68,21 @@ export default function LoginPage() {
 
     if (error) {
       alert('error signing in')
-    } else {
-      history.push('/profile')
+    }
+    else {
+      const session = supabase.auth.session()
+      let { data, error } = await supabase
+          .from('users')
+          .select('role_id')
+          .eq('id', session.user.id)
+      var role_id = data[0];
+      if(role_id ==2){
+        history.push('/requestStory')
+      }
+      else{
+        history.push('/WriterUploadStory')
+
+      }
     }
   }
 
