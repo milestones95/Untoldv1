@@ -24,7 +24,7 @@ import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
 import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
-import BrowsePage from './BrowsePage'
+import BrowsePage from './pages/BrowsePage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -44,6 +44,7 @@ ReactDOM.render(
           <Route exact path="/storypage/:slug" component={UserStoryPage} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/browse" component={BrowsePage} />
           {/* <Route exact path="/form" component={Form} /> */}
           <Route exact path="/" component={Home} />
         </AuthProvider>

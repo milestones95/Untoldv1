@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { getCategoryIds, getWriters, getCategoryNames } from "./api/helperFunctions";
+import Navbar from "../templates/Navbar";
+import Footer from "../templates/Footer";
+import { getCategoryIds, getWriters, getCategoryNames } from "../api/helperFunctions";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
