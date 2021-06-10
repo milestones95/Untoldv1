@@ -30,8 +30,9 @@ class WriterUploadStory extends React.Component{
     // const target = event.target;
     const value = event.target.value;
     const name = event.target.name;
-    this.setState({
-      [name]: value
+    // console.log("value: " + value);
+    this.setState((state)=>{
+      return{  [name]: value  }
     });
   }
 
@@ -39,7 +40,13 @@ class WriterUploadStory extends React.Component{
     const originalStory = this.state.story;
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
     var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
-    var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
+    var newStory = resWithNameAndPartnerTemplate;
+    console.log("lover name: "+this.state.lover_name);
+    if(this.state.lover_name)
+    {
+      var resWithLoverNameTemplate = resWithNameAndPartnerTemplate.replaceAll(this.state.lover_name, "{Lover_Name}");
+      newStory = resWithLoverNameTemplate;
+    }
     event.preventDefault();
 
     try {
@@ -48,7 +55,7 @@ class WriterUploadStory extends React.Component{
      const { error } = await supabase
        .from('writer_stories').insert({
        story_name: this.state.story_name,
-       content: resWithLoverNameTemplate,
+       content: newStory,
        orientation: this.state.orientation,
        category_id: this.state.category,
        gender: this.state.gender,
@@ -78,6 +85,8 @@ class WriterUploadStory extends React.Component{
        <div>
          <Link href='/WriterUploadStory'>Home</Link>
          <Link href='/writerLibrary'>Library</Link>
+         <Link href='/wProfile'>Profile</Link>
+
 
          <h1>Writer Upload Story Page</h1>
            <form onSubmit={this.handleSubmit}>
