@@ -32,10 +32,9 @@ class WriterProfile extends React.Component{
     event.preventDefault();
     try {
         const session = supabase.auth.session()
-        const { error } = await supabase.from('writer_info').upsert({
-         bio: this.state.bio,
-         user_id: session?.user.id
-     });
+        const { error } = await supabase.from('users').update({
+         quote: this.state.bio})
+         .eq('id', session?.user.id);
    } catch (err) {
      console.error(err);
    }
@@ -49,7 +48,7 @@ class WriterProfile extends React.Component{
           Bio Description:
           <input type="text" name="bio" value={this.state.bio} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Save" />
       </form>
     );
   }

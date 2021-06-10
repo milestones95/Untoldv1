@@ -23,9 +23,12 @@ import UserStoryRequest from './pages/UserStoryRequest'
 import UserRequestStatusListView from './pages/UserRequestStatusListView'
 import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
+import WriterProfileUserView from './pages/WriterProfileUserView'
 import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
+import BrowsePage2 from './pages/BrowsePage2'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -47,6 +50,8 @@ ReactDOM.render(
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/browse" component={BrowsePage} />
+          <Route exact path="/browse2" component={BrowsePage2} />
+          <Route exact path="/browse2/:slug" component={WriterProfileUserView} />
           {/* <Route exact path="/form" component={Form} /> */}
           <Route exact path="/" component={Home} />
         </AuthProvider>

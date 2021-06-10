@@ -73,10 +73,12 @@ export default function LoginPage() {
       const session = supabase.auth.session()
       let { data, error } = await supabase
           .from('users')
-          .select('role_id')
+          .select('is_writer')
           .eq('id', session.user.id)
-      var role_id = data[0];
-      if(role_id ==2){
+          
+      var isWriter = data[0].is_writer;
+
+      if(isWriter ==0){
         history.push('/requestStory')
       }
       else{

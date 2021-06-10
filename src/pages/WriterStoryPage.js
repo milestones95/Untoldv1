@@ -2,6 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../api/supabaseClient";
 
+// class WriterStoryPage extends React.Component{
+//   constructor(props) {
+//       super(props);
+//       this.state = {
+//         stories: [],
+//         isFetching: false
+//     };
+//   }
+//
+//   componentDidMount(){
+//
+//   }
+//
+//   render(){
+//     return(
+//       <div>
+//         story id: {this.props.story_id}
+//       </div>
+//     );
+//   }
+//
+// }
+//
+// export default WriterStoryPage;
+
 export default function WriterStoryPage(){
   const { slug } = useParams();
   const [story, storySet] = React.useState([]);

@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../Auth/Auth'
 import { Redirect } from "react-router";
 import { Link } from 'react-router-dom'
-
+import WriterStoryPage from './WriterStoryPage';
 class WriterStoryLibrary extends React.Component{
   constructor(props) {
       super(props);
@@ -51,6 +51,7 @@ class WriterStoryLibrary extends React.Component{
           <span>
             <li key={index}>{stories.story_name}</li>
           </span>
+          {/* <WriterStoryPage story_id={stories.story_id}/> */}
         </Link>
       ))}
       </div>

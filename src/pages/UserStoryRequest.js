@@ -55,7 +55,8 @@ class UserStoryRequest extends React.Component{
        category_id: this.state.category,
        gender: this.state.gender,
        additional_details: this.state.additional_details,
-       is_completed: this.state.is_completed
+       is_completed: this.state.is_completed,
+       writer_id: this.props.id
           });
    } catch (err) {
      console.error(err);
@@ -87,7 +88,7 @@ class UserStoryRequest extends React.Component{
     // }
      return (
        <div>
-         <Link href='/home'>Home</Link>
+         {/* <Link href='/home'>Home</Link> */}
            <form onSubmit={this.handleSubmit}>
              <label>
                Choose category:
