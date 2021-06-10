@@ -76,7 +76,7 @@ const SignUp = () => {
       } else {
         // Redirect user to Dashboard
         alert('Your account was created! Check your email')
-        history.push('/login')
+        // history.push('/wProfile')
       }
     }
 

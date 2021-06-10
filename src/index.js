@@ -18,6 +18,7 @@ import UserStoryLibrary from './pages/UserStoryLibrary'
 import WriterStoryLibrary from './pages/WriterStoryLibrary'
 import WriterStoryPage from './pages/WriterStoryPage'
 import UserStoryPage from './pages/UserStoryPage'
+import WriterProfile from './pages/WriterProfile'
 import UserStoryRequest from './pages/UserStoryRequest'
 import UserRequestStatusListView from './pages/UserRequestStatusListView'
 import UserRequestDetails from './pages/UserRequestDetails'
@@ -37,6 +38,7 @@ ReactDOM.render(
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
           <Route exact path="/writerLibrary" component={WriterStoryLibrary} />
           <Route exact path="/wStoryPage/:slug" component={WriterStoryPage} />
+          <Route exact path="/wProfile" component={WriterProfile} />
           <Route exact path="/requestStory" component={UserStoryRequest} />
           <Route exact path="/requestStatusListView" component={UserRequestStatusListView} />
           <Route exact path="/requestDetails/:slug" component={UserRequestDetails} />
