@@ -1,25 +1,26 @@
 import { supabase } from "./supabaseClient";
 
-export async function getTagIds(writerId) {
-  console.log('i am in get tag ids', writerId)
+export async function getCategoryIds(userId) {
+  console.log('i am in get tag ids', userId)
   const {data, error} = await supabase
-          .from('writers_tags')
+          .from('user_category')
           .select('*')
-          .eq('writerid', writerId)
+          .eq('user_id', userId)
   return data
 }
 
 export async function getWriters() {
   const { data, error } = await supabase
-    .from('writers')
+    .from('users')
     .select('*')
+    .eq('is_writer', 1)
   return data
 }
 
-export async function getTagNames(tagId) {
+export async function getCategoryNames(categoryId) {
   const {data, error} = await supabase
-          .from('tag_name')
+          .from('category')
           .select('*')
-          .eq('tag_id', tagId)
+          .eq('id', categoryId)
   return data
 }
