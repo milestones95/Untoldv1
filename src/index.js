@@ -24,6 +24,7 @@ import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
 import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
+import BrowsePage from './BrowsePage'
 
 ReactDOM.render(
   <React.StrictMode>
