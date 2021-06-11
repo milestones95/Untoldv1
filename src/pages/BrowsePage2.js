@@ -25,13 +25,10 @@ class BrowsePage2 extends React.Component{
   async handleChange(event) {
     const value = event.target.value;
     const name = event.target.name;
-    // console.log("name: " + name);
-    // this.setState((state)=>{
-    //   return{  [name]: value  }
-    // });
 
-    console.log("updated cat: " + this.state.category);
-
+    this.setState({
+      category: value
+    });
     var  updatedCategory = value;
     console.log("category: " + updatedCategory);
 
@@ -40,28 +37,19 @@ class BrowsePage2 extends React.Component{
 
       if(updatedCategory != 0)
       {
-        const { data, error } = await supabase
-        .from('user_category')
-        .select(`
-          *, users (
-            *
-          )
-        `)
-        .eq('category_id',updatedCategory);
+        let { data, error } = await supabase
+          .rpc('ListWritersPerCategory', {
+            c_id: parseInt(updatedCategory)
+          })
 
-        console.log(data);
+        console.log("data filtered writers" + JSON.stringify(data));
         this.setState({writers: data, isFetching : false});
 
       }else{
-        const { data, error } = await supabase
-        .from('user_category')
-        .select(`
-          *, users (
-            *
-          )
-        `)
-
+        let { data, error } = await supabase
+          .rpc('ListAllWriters')
         console.log(data);
+        // this.setState({writers: data, isFetching : false});
         this.setState({writers: data, isFetching : false});
       }
       this.setState({category: value});
@@ -78,15 +66,16 @@ class BrowsePage2 extends React.Component{
     try {
 
         this.setState({...this.state, isFetching : true});
-        const { data, error } = await supabase
-        .from('user_category')
-        .select(`
-          *, users (
-            *
-          )
-        `)
-        // .eq('category_id',1);
+        // const { data, error } = await supabase
+        // .from('user_category')
+        // .select(`
+        //   category_id, users (
+        //     *
+        //   )
+        // `).eq('users.is_writer', 1)
 
+        let { data, error } = await supabase
+          .rpc('ListAllWriters')
         console.log(data);
         this.setState({writers: data, isFetching : false});
 
@@ -118,11 +107,11 @@ class BrowsePage2 extends React.Component{
 
         {this.state.writers &&
           this.state.writers.map((writers, index) => (
-        <Link to={"/browse2/" + writers.users.username} key={writers.username}>
+        <Link to={"/browse2/" + writers.username} key={writers.username}>
           <span>
             {/* <li key={index}>Id:  {writers.users.id}</li> */}
-            <li key={index}>username:   {writers.users.username}</li>
-          <li key={index}>BIO: {writers.users.quote}</li>
+            <li key={index}>username:   {writers.username}</li>
+          <li key={index}>BIO: {writers.quote}</li>
           </span>
           {/* <WriterStoryPage story_id={writers.story_id}/> */}
         </Link>
