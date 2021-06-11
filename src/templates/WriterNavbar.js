@@ -143,6 +143,15 @@ const WriterNavbar = props => (
         <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           <Link href="/WriterUploadStory">Home</Link>
         </Grid>
+        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+          <Link href="/wProfile">Profile</Link>
+        </Grid>
+        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+          <Link href="/writerLibrary">Library</Link>
+        </Grid>
+        {/* <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+          <Link href="/WriterUploadStory">Home</Link>
+        </Grid> */}
         {/* <Grid item xs={12} className={props.classes.dropDownMenuItem}>
           <Link href='#'>How It Works</Link>
         </Grid>
@@ -165,6 +174,20 @@ const WriterNavbar = props => (
         <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
           <Typography className={props.classes.links}>
             <Link href="/WriterUploadStory" >Home</Link>
+            {/* <Link href='#'>How It Works</Link>
+            <Link href='/examplestory'>Example Story</Link> */}
+          </Typography>
+        </Grid>
+        <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
+          <Typography className={props.classes.links}>
+            <Link href="/wProfile" >Profile</Link>
+            {/* <Link href='#'>How It Works</Link>
+            <Link href='/examplestory'>Example Story</Link> */}
+          </Typography>
+        </Grid>
+        <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
+          <Typography className={props.classes.links}>
+            <Link href="/writerLibrary" >Library</Link>
             {/* <Link href='#'>How It Works</Link>
             <Link href='/examplestory'>Example Story</Link> */}
           </Typography>
