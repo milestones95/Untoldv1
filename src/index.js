@@ -20,6 +20,7 @@ import WriterStoryPage from './pages/WriterStoryPage'
 import UserStoryPage from './pages/UserStoryPage'
 import WriterProfile from './pages/WriterProfile'
 import UserStoryRequest from './pages/UserStoryRequest'
+import WriterStoryRequests from './pages/WriterStoryRequests'
 import UserRequestStatusListView from './pages/UserRequestStatusListView'
 import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
@@ -28,7 +29,6 @@ import AuthProvider from './Auth/Auth'
 import PrivateRoute from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
 import BrowsePage2 from './pages/BrowsePage2'
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,6 +40,7 @@ ReactDOM.render(
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
           <Route exact path="/writerLibrary" component={WriterStoryLibrary} />
+          <Route exact path="/wStoryRequest" component={WriterStoryRequests} />
           <Route exact path="/wStoryPage/:slug" component={WriterStoryPage} />
           <Route exact path="/wProfile" component={WriterProfile} />
           <Route exact path="/requestStory" component={UserStoryRequest} />
