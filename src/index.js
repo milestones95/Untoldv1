@@ -40,7 +40,7 @@ ReactDOM.render(
           <Route exact path="/examplestory" component={ExampleStory} />
           <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
           <Route exact path="/writerLibrary" component={WriterStoryLibrary} />
-          <Route exact path="/wStoryRequest" component={WriterStoryRequests} />
+          <Route exact path="/wRequests" component={WriterStoryRequests} />
           <Route exact path="/wStoryPage/:slug" component={WriterStoryPage} />
           <Route exact path="/wProfile" component={WriterProfile} />
           <Route exact path="/requestStory" component={UserStoryRequest} />
