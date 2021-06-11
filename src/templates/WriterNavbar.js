@@ -12,6 +12,8 @@ import { supabase } from "../api/supabaseClient";
 import { useAuth } from '../Auth/Auth'
 import { useHistory } from 'react-router-dom'
 
+const drawerWidth = 220;
+
 const styles = theme => ({
   root: {
     position: "static",
@@ -43,7 +45,25 @@ const styles = theme => ({
   dropDownMenuItem: {
     textAlign: "left",
     marginLeft: theme.spacing(2),
-  }
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  horizontalButtonBar: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    },
+    position: "fixed",
+    width: "5%",
+    height: "100%",
+    background: "#000000",
+    marginRight: theme.spacing(5)
+  },
 });
 
 const AuthContext = React.createContext()
@@ -137,8 +157,8 @@ const WriterNavbar = props => (
         </Grid>
       </Grid>
     </ButtonAppBarCollapse>
-    <div className={props.classes.buttonBar} id="appbar-collapse">
-      <Grid container>
+      <Grid container direction="column">
+        <div className={props.classes.horizontalButtonBar} id="appbar-collapse">
         <Grid item lg={2} sm={2} className={props.classes.menuIcon}>
           < MenuIcon color="primary"/>
         </Grid>
@@ -157,8 +177,8 @@ const WriterNavbar = props => (
         <Grid item lg={1} sm={1} style={{textAlign: "left"}} className={props.classes.signUpButton}>
           {NavBarButton()}
         </Grid>
-        </Grid>
-    </div>
+      </div>
+      </Grid>
   </div>
   </ElevationScroll>
 );
