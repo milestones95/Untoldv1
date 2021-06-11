@@ -8,11 +8,15 @@ import Link from '@material-ui/core/Link';
 import WriterNavbar from "../templates/WriterNavbar";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
+import Footer from "../templates/Footer";
 
 const useStyles = theme => ({
   root: {
       marginLeft: theme.spacing(20),
-    }
+    },
+  footer: {
+    marginTop: theme.spacing(40),
+  }
 });
 
 // import WriterNavbar from "../templates/Navbar";
@@ -184,6 +188,9 @@ class WriterUploadStory extends React.Component{
               <input type="submit" value="Submit" />
             </form>
           </div>
+    </Grid>
+    <Grid sm={12} className={classes.footer}>
+      <Footer />
     </Grid>
     </Grid>
       );
