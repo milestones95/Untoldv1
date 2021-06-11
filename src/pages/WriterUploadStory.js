@@ -5,6 +5,15 @@ import Grid from "@material-ui/core/Grid";
 import { supabase } from "../api/supabaseClient";
 import { useAuth } from '../Auth/Auth';
 import Link from '@material-ui/core/Link';
+import WriterNavbar from "../templates/WriterNavbar";
+import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
+
+const useStyles = theme => ({
+  root: {
+      marginLeft: theme.spacing(20),
+    }
+});
 
 // import WriterNavbar from "../templates/Navbar";
 class WriterUploadStory extends React.Component{
@@ -80,104 +89,106 @@ class WriterUploadStory extends React.Component{
   }
 
   render() {
+    const { classes } = this.props;
      return (
-
-       <div>
-         <Link href='/WriterUploadStory'>Home</Link>
-         <Link href='/writerLibrary'>Library</Link>
-         <Link href='/wProfile'>Profile</Link>
-
-
-         <h1>Writer Upload Story Page</h1>
-           <form onSubmit={this.handleSubmit}>
-             <label>
-               Choose category:
-               <select name="category" value={this.state.category} onChange={this.handleChange}>
-                 <option value="0">Select a category</option>
-                 <option value="2">Cheating</option>
-                 <option value="3">Cheated On</option>
-                 <option value="4">BDSM</option>
-                 <option value="1">Romance</option>
-               </select>
-             </label>
-             <div>
-               <p>Story name</p>
-               <input name="story_name" type="text" value={this.state.story_name} onChange={this.handleChange} />
-               <p>Story</p>
-               <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
-             </div>
-             {(()=>{
-              switch(this.state.category)
-              {
-                case "2":
-                  return (
-                    <div>
-                        <p>Name</p>
-                        <input name="name" type="text"  onChange={this.handleChange} />
-                        <p>Partner's name</p>
-                        <input name="partner_name" type="text" onChange={this.handleChange} />
-                        <p>Lover's name</p>
-                        <input name="lover_name" type="text" onChange={this.handleChange} />
-                  </div>
-                  );
-                  case "3":
-                    return (
-                      <div>
-                          <p>Name</p>
-                          <input name="name" type="text"  onChange={this.handleChange} />
-                          <p>Partner's name</p>
-                          <input name="partner_name" type="text" onChange={this.handleChange} />
-                          <p>Lover's name</p>
-                          <input name="lover_name" type="text" onChange={this.handleChange} />
-                    </div>
-                    );
-                  case "4":
-                    return (
-                      <div>
-                          <p>Dom</p>
-                          <input name="name" type="text"  onChange={this.handleChange} />
-                          <p>Sub</p>
-                          <input name="partner_name" type="text" onChange={this.handleChange} />
-                    </div>
-                    );
-                    case "1":
+       <Grid container>
+         <Grid item sm={12}>
+           <WriterNavbar />
+         </Grid>
+         <Grid item sm={12} className={classes.root}>
+           <div>
+             <h1>Writer Upload Story Page</h1>
+               <form onSubmit={this.handleSubmit}>
+                 <label>
+                   Choose category:
+                   <select name="category" value={this.state.category} onChange={this.handleChange}>
+                     <option value="0">Select a category</option>
+                     <option value="2">Cheating</option>
+                     <option value="3">Cheated On</option>
+                     <option value="4">BDSM</option>
+                     <option value="1">Romance</option>
+                   </select>
+                 </label>
+                 <div>
+                   <p>Story name</p>
+                   <input name="story_name" type="text" value={this.state.story_name} onChange={this.handleChange} />
+                   <p>Story</p>
+                   <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                 </div>
+                 {(()=>{
+                  switch(this.state.category)
+                  {
+                    case "2":
                       return (
                         <div>
                             <p>Name</p>
                             <input name="name" type="text"  onChange={this.handleChange} />
-                            <p>Partner name</p>
+                            <p>Partner's name</p>
                             <input name="partner_name" type="text" onChange={this.handleChange} />
+                            <p>Lover's name</p>
+                            <input name="lover_name" type="text" onChange={this.handleChange} />
                       </div>
                       );
-                  }
-                })()}
-                <div>
-                  <label>
-                    Gender of main character
-                    <select name="gender" value={this.state.gender} onChange={this.handleChange}>
-                      <option value="0">Select gender</option>
-                      <option value="1">M</option>
-                      <option value="2">F</option>
-                    </select>
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    Sexual orientation of main character
-                    <select name="orientation" value={this.state.orientation} onChange={this.handleChange}>
-                      <option value="0">Select gender</option>
-                      <option value="1">Heterosexual</option>
-                      <option value="2">Homosexual</option>
-                      <option value="3">Bisexual</option>
-                    </select>
-                  </label>
-                </div>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+                      case "3":
+                        return (
+                          <div>
+                              <p>Name</p>
+                              <input name="name" type="text"  onChange={this.handleChange} />
+                              <p>Partner's name</p>
+                              <input name="partner_name" type="text" onChange={this.handleChange} />
+                              <p>Lover's name</p>
+                              <input name="lover_name" type="text" onChange={this.handleChange} />
+                        </div>
+                        );
+                      case "4":
+                        return (
+                          <div>
+                              <p>Dom</p>
+                              <input name="name" type="text"  onChange={this.handleChange} />
+                              <p>Sub</p>
+                              <input name="partner_name" type="text" onChange={this.handleChange} />
+                        </div>
+                        );
+                        case "1":
+                          return (
+                            <div>
+                                <p>Name</p>
+                                <input name="name" type="text"  onChange={this.handleChange} />
+                                <p>Partner name</p>
+                                <input name="partner_name" type="text" onChange={this.handleChange} />
+                          </div>
+                          );
+                      }
+                    })()}
+                    <div>
+                      <label>
+                        Gender of main character
+                        <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+                          <option value="0">Select gender</option>
+                          <option value="1">M</option>
+                          <option value="2">F</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        Sexual orientation of main character
+                        <select name="orientation" value={this.state.orientation} onChange={this.handleChange}>
+                          <option value="0">Select gender</option>
+                          <option value="1">Heterosexual</option>
+                          <option value="2">Homosexual</option>
+                          <option value="3">Bisexual</option>
+                        </select>
+                      </label>
+                    </div>
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+    </Grid>
+    </Grid>
       );
     }
 
 }
 
-export default WriterUploadStory;
+export default withStyles(useStyles,{ withTheme: true }) (WriterUploadStory);

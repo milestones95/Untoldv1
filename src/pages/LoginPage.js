@@ -71,20 +71,23 @@ export default function LoginPage() {
     }
     else {
       const session = supabase.auth.session()
-      let { data, error } = await supabase
+      console.log(session)
+      await supabase
           .from('users')
           .select('is_writer')
           .eq('id', session.user.id)
-          
-      var isWriter = data[0].is_writer;
+          .then(
+            function (response) {
+            var isWriter = response.body[0].is_writer;
+            if(!(isWriter)){
+              history.push('/requestStory')
+            }
+            else{
+              history.push('/WriterUploadStory')
 
-      if(isWriter ==0){
-        history.push('/requestStory')
-      }
-      else{
-        history.push('/WriterUploadStory')
-
-      }
+            }
+          }
+        )
     }
   }
 
