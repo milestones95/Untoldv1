@@ -78,6 +78,7 @@ export default function LoginPage() {
           .eq('id', session.user.id)
           .then(
             function (response) {
+            console.log(response)
             var isWriter = response.body[0].is_writer;
             if(!(isWriter)){
               history.push('/requestStory')
