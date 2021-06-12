@@ -26,7 +26,7 @@ import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
 import WriterProfileUserView from './pages/WriterProfileUserView'
 import AuthProvider from './Auth/Auth'
-import PrivateRoute from './PrivateRoute'
+import {PrivateRoute, BlockAuthFlows} from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
 import BrowsePage2 from './pages/BrowsePage2'
 
@@ -34,20 +34,20 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
         <AuthProvider>
-          <Route exact path="/signup" component={SignUp} />
+          <BlockAuthFlows exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <Route exact path="/login" component={LoginPage} />
+          <BlockAuthFlows exact path="/login" component={LoginPage} />
           <Route exact path="/examplestory" component={ExampleStory} />
-          <Route exact path="/WriterUploadStory" component={WriterUploadStory} />
-          <Route exact path="/writerLibrary" component={WriterStoryLibrary} />
-          <Route exact path="/wRequests" component={WriterStoryRequests} />
-          <Route exact path="/wStoryPage/:slug" component={WriterStoryPage} />
-          <Route exact path="/wProfile" component={WriterProfile} />
+          <PrivateRoute exact path="/WriterUploadStory" component={WriterUploadStory} />
+          <PrivateRoute exact path="/writerLibrary" component={WriterStoryLibrary} />
+          <PrivateRoute exact path="/wRequests" component={WriterStoryRequests} />
+          <PrivateRoute exact path="/wStoryPage/:slug" component={WriterStoryPage} />
+          <PrivateRoute exact path="/wProfile" component={WriterProfile} />
           <Route exact path="/requestStory" component={UserStoryRequest} />
           <Route exact path="/requestStatusListView" component={UserRequestStatusListView} />
           <Route exact path="/requestDetails/:slug" component={UserRequestDetails} />
-          <Route exact path="/userlibrary" component={UserStoryLibrary} />
-          <Route exact path="/storypage/:slug" component={UserStoryPage} />
+          <PrivateRoute exact path="/userlibrary" component={UserStoryLibrary} />
+          <PrivateRoute exact path="/storypage/:slug" component={UserStoryPage} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/browse" component={BrowsePage} />
