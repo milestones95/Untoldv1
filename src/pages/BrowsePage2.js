@@ -105,8 +105,7 @@ class BrowsePage2 extends React.Component{
           </select>
         </label>
 
-        {this.state.writers &&
-          this.state.writers.map((writers, index) => (
+        {this.state.writers.map((writers, index) => (
         <Link to={"/browse2/" + writers.username} key={writers.username}>
           <span>
             {/* <li key={index}>Id:  {writers.users.id}</li> */}

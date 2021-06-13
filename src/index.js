@@ -25,6 +25,7 @@ import UserRequestStatusListView from './pages/UserRequestStatusListView'
 import UserRequestDetails from './pages/UserRequestDetails'
 import WriterUploadStory from './pages/WriterUploadStory'
 import WriterProfileUserView from './pages/WriterProfileUserView'
+import Reader from './pages/Reader'
 import AuthProvider from './Auth/Auth'
 import {PrivateRoute, BlockAuthFlows} from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
@@ -54,6 +55,7 @@ ReactDOM.render(
           <Route exact path="/browse2" component={BrowsePage2} />
           <Route exact path="/browse2/:slug" component={WriterProfileUserView} />
           {/* <Route exact path="/form" component={Form} /> */}
+          <Route exact path="/reader" component={Reader} />
           <Route exact path="/" component={Home} />
         </AuthProvider>
     </Router>
