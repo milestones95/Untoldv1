@@ -24,3 +24,11 @@ export async function getCategoryNames(categoryId) {
           .eq('id', categoryId)
   return data
 }
+
+export async function getAStory(storyId) {
+  const {data, error} = await supabase
+          .from('story_templates')
+          .select('*')
+          .eq('story_id', storyId)
+  return data
+}
