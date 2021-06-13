@@ -27,7 +27,7 @@ export async function getCategoryNames(categoryId) {
 
 export async function getAStory(storyId) {
   const {data, error} = await supabase
-          .from('story_templates')
+          .from('stories')
           .select('*')
           .eq('story_id', storyId)
   return data
