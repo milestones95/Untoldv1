@@ -26,7 +26,7 @@ const FindStory = () => {
   const [story, setStory] = useState('');
   useEffect(async () => {
     try {
-        var getStory = await getAStory(1).then(
+        var getStory = await getAStory(10).then(
           function(response) {
                 setStory(response[0])
               }

@@ -51,6 +51,7 @@ class WriterUploadStory extends React.Component{
 
    handleSubmit = async(event) =>{
     const originalStory = this.state.story;
+    console.log(originalStory)
     var resWithPartnerTemplate = originalStory.replaceAll(this.state.partner_name, "{Partner_Name}");
     var resWithNameAndPartnerTemplate = resWithPartnerTemplate.replaceAll(this.state.name, "{Name}");
     var newStory = resWithNameAndPartnerTemplate;
@@ -64,16 +65,18 @@ class WriterUploadStory extends React.Component{
 
     try {
       const session = supabase.auth.session()
-      console.log("new story: " + this.state.newStory);
+      console.log(session.user.id);
      const { error } = await supabase
-       .from('writer_stories').insert({
-       story_name: this.state.story_name,
-       content: newStory,
-       orientation: this.state.orientation,
-       category_id: this.state.category,
-       gender: this.state.gender,
-       writer_id: session?.user.id
-     });
+       .from('stories').insert({
+         story_name: this.state.story_name,
+         content: originalStory,
+         author: session.user.id,
+         user_id: session.user.id,
+       }).then(
+         function (response) {
+           console.log(response);
+         }
+       )
 
      this.setState({
        category: '',
@@ -117,7 +120,7 @@ class WriterUploadStory extends React.Component{
                    <p>Story name</p>
                    <input name="story_name" type="text" value={this.state.story_name} onChange={this.handleChange} />
                    <p>Story</p>
-                   <input name="story" type="text" value={this.state.story} onChange={this.handleChange} />
+                   <textarea name="story" type="text" value={this.state.story} onChange={this.handleChange} />
                  </div>
                  {(()=>{
                   switch(this.state.category)
