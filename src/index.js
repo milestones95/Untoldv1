@@ -30,6 +30,8 @@ import AuthProvider from './Auth/Auth'
 import {PrivateRoute, BlockAuthFlows} from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
 import BrowsePage2 from './pages/BrowsePage2'
+import StripeContainer from './Stripe/StripeContainer'
+import TermsOfService from './Stripe/TermsOfService'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -54,7 +56,9 @@ ReactDOM.render(
           <Route exact path="/browse" component={BrowsePage} />
           <Route exact path="/browse2" component={BrowsePage2} />
           <Route exact path="/browse2/:slug" component={WriterProfileUserView} />
-          {/* <Route exact path="/form" component={Form} /> */}
+          <Route exact path="/wCreateAccount" component={StripeContainer} />
+          {/* <Route exact path="/purchase" component={CheckoutPage} /> */}
+          <Route exact path="/stripe/tos" component={TermsOfService} />
           <Route exact path="/reader" component={Reader} />
           <Route exact path="/" component={Home} />
         </AuthProvider>
