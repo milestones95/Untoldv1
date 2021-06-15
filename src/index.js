@@ -31,6 +31,7 @@ import {PrivateRoute, BlockAuthFlows} from './PrivateRoute'
 import BrowsePage from './pages/BrowsePage'
 import BrowsePage2 from './pages/BrowsePage2'
 import StripeContainer from './Stripe/StripeContainer'
+import CustomerPurchaseStripeContainer from './Stripe/CustomerPurchaseStripeContainer'
 import TermsOfService from './Stripe/TermsOfService'
 
 ReactDOM.render(
@@ -59,6 +60,7 @@ ReactDOM.render(
           <Route exact path="/wCreateAccount" component={StripeContainer} />
           {/* <Route exact path="/purchase" component={CheckoutPage} /> */}
           <Route exact path="/stripe/tos" component={TermsOfService} />
+          <Route exact path="/purchase" component={CustomerPurchaseStripeContainer} />
           <Route exact path="/reader" component={Reader} />
           <Route exact path="/" component={Home} />
         </AuthProvider>
