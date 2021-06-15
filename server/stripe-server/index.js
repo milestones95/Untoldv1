@@ -9,32 +9,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post("/stripe/charge", cors(), async (req, res) => {
-  console.log("stripe-routes.js 9 | route reached", req.body);
-  let { amount, id } = req.body;
-  console.log("stripe-routes.js 10 | amount and id", amount, id);
-  try {
-    const subscription = await stripe.subscriptions.create({
-      customer: 'cus_J5gaqIF0oMNxhj',
-      items: [
-        {price: 'price_1IvSu0CWDNwd4dEqF80PUKpJ'},
-      ],
-    });
-    console.log("stripe-routes.js 19 | subscription", subscription);
-    res.json({
-      message: "subscription Successful",
-      success: true,
-      customer: subscription.customer,
-      subscription_id: subscription.id
-    });
-  } catch (error) {
-    console.log("stripe-routes.js 17 | error", error);
-    res.json({
-      message: "subscription Failed",
-      success: false,
-    });
-  }
-});
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Story',
+          },
+          unit_amount: 1300,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: 'http://localhost:3000/success.html',
+    cancel_url: 'http://localhost:3000/cancel.html',
+  });
+res.send({
+  sessionId: session.id,
+});});
 
 app.post("/stripe/cancel", cors(), async (req, res) => {
   try {
@@ -129,7 +125,7 @@ app.post("/purchase", cors(), async (req, res) => {
         currency: 'usd',
         application_fee_amount: 123,
         transfer_data: {
-          destination: '{{acct_1J1wrLRFx5K5Se1u}}',
+          destination: 'acct_1J25jtRIZFHrDAIK',
         },
       });
 

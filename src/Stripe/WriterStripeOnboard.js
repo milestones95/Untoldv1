@@ -4,7 +4,7 @@ import "../css/stripe.css"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
-export const CheckoutForm = () => {
+export const WriterStripeOnboard = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [link, linkSet] = React.useState([]);
