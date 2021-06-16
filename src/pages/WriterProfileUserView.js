@@ -36,7 +36,7 @@ export default function WriterProfileUserView(){
     let { data, error } = await supabase
         .from('users')
         .select('username, quote, id')
-        .eq('username', slug)
+        .eq('id', slug)
 
         writerSet(data[0]);
         console.log("component: "+ showComponent);
