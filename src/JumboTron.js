@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     background: "grey"
   },
   msg: {
-    marginLeft: theme.spacing(45),
-    marginRight: theme.spacing(45),
+    marginLeft: "20%",
+    marginRight: "20%",
   },
   fantasy: {
     marginLeft: theme.spacing(1.5),
@@ -30,22 +30,13 @@ export default function ContactCard () {
 
   return (
       <Grid container spacing={3} direction="columns" className={classes.root}>
-        <Grid container item xs={12} sm={12} alignContent="center">
-          <Grid item xs={12} sm={6}>
-            <div align="right">
-              <Typography variant="h2" className={classes.direct}>
-                Direct your
-              </Typography>
-            </div>
+        <Grid item xs={12} sm={12}>
+              <div align="center">
+                <Typography variant="h2" className={classes.direct}>
+                  Direct your fantasy
+                </Typography>
+              </div>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <div align="left">
-              <Typography variant="h2" style={{"color": "purple"}} className={classes.fantasy}>
-                 fantasy
-              </Typography>
-            </div>
-          </Grid>
-        </Grid>
         <Grid item xs={12} sm={12}>
           <div align="center" className={classes.msg}>
             <Typography>
@@ -55,7 +46,7 @@ export default function ContactCard () {
         </Grid>
         <Grid item xs={12} sm={12}>
           <div align="center" className={classes.buttons}>
-            <Button variant="contained" color="primary">Get started</Button>
+            <Button variant="contained" color="primary" position="static">Get started</Button>
             <Button variant="contained">
               Become A Writer
             </Button>

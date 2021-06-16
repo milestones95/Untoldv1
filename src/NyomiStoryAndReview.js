@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     shadowOpacity: 0,
     shadowRadius: 0,
     elevation: 0, // This is for Android
-    height: '28vw'
+    height: '100%'
   },
   text2: {
     marginTop: theme.spacing(2)

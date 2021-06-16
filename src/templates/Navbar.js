@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import { supabase } from "../api/supabaseClient";
 import { useAuth } from '../Auth/Auth'
 import { useHistory } from 'react-router-dom'
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
   root: {
@@ -137,6 +138,7 @@ const Navbar = props => (
         </Grid>
       </Grid>
     </ButtonAppBarCollapse>
+
     <div className={props.classes.buttonBar} id="appbar-collapse">
       <Grid container>
         <Grid item lg={2} sm={2} className={props.classes.menuIcon}>

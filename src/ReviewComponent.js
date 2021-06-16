@@ -41,9 +41,9 @@ const styles = theme => ({
     background: "grey"
   },
   msg: {
-    marginLeft: theme.spacing(45),
-    marginRight: theme.spacing(45),
-  }
+    marginLeft: "20%",
+    marginRight: "20%",
+  },
 });
 
 
@@ -82,17 +82,13 @@ class ReviewComponent extends React.Component {
             </div>
           </Grid>
             <Grid container item xs={12} sm={12} alignContent="center">
-              <Grid item xs={12} sm={6}>
-               <div align="right">
+              <Grid item xs={12} sm={12} align="center">
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.small} />
-                </div>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <div align="left">
+              <Grid item xs={12} sm={12} align="center">
                   <Typography variant="subtitle1">
                     Judith Black
                   </Typography>
-                </div>
               </Grid>
             </Grid>
           </Grid>
