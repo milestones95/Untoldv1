@@ -9,6 +9,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Use JSON parser for all non-webhook routes
+app.use((req, res, next) => {
+  if (req.originalUrl === "/webhook") {
+    next();
+  } else {
+    bodyParser.json()(req, res, next);
+  }
+});
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -24,6 +33,12 @@ app.post('/create-checkout-session', async (req, res) => {
         quantity: 1,
       },
     ],
+    payment_intent_data: {
+    application_fee_amount: 123,
+    transfer_data: {
+      destination: 'acct_1J25jtRIZFHrDAIK',
+    },
+  },
     mode: 'payment',
     success_url: 'http://localhost:3000/success.html',
     cancel_url: 'http://localhost:3000/cancel.html',
@@ -31,24 +46,6 @@ app.post('/create-checkout-session', async (req, res) => {
 res.send({
   sessionId: session.id,
 });});
-
-app.post("/stripe/cancel", cors(), async (req, res) => {
-  try {
-    console.log(req);
-    const subscription = await stripe.subscriptions.del('sub_JYyzvNrFOP1gA2');
-    console.log("stripe-routes.js 19 | subscription", subscription);
-    res.json({
-      message: "subscription Successful",
-      success: true,
-    });
-  } catch (error) {
-    console.log("stripe-routes.js 17 | error", error);
-    res.json({
-      message: "subscription Failed",
-      success: false,
-    });
-  }
-});
 
 app.post("/stripe/createAccount", cors(), async (req, res) => {
   try {
@@ -76,41 +73,12 @@ app.post("/stripe/createAccount", cors(), async (req, res) => {
     res.json({
       url: accountLink.url,
       success: true,
+      account_id: account.id,
     });
   } catch (error) {
     console.log("error", error);
     res.json({
       message: "creation failed Failed",
-      success: false,
-    });
-  }
-});
-
-app.post("/stripe/termsOfService", cors(), async (req, res) => {
-  console.log("helllo");
-  try {
-      console.log(req);
-      const termsOfServiceInfo = await stripe.accounts.update(
-        '{{acct_1J1wrLRFx5K5Se1u}}',
-        {
-          tos_acceptance: {
-            date: Math.floor(Date.now() / 1000),
-            ip: request.connection.remoteAddress, // Assumes you're not using a proxy
-          },
-        }
-      );
-
-      console.log("accepted: " + JSON.stringify(termsOfServiceInfo));
-    // const subscription = await stripe.subscriptions.del('sub_JYyzvNrFOP1gA2');
-    // // console.log("stripe-routes.js 19 | subscription", subscription);
-    // res.json({
-    //   message: "account creation Successful",
-    //   success: true,
-    // });
-  } catch (error) {
-    console.log("error", error);
-    res.json({
-      message: "agreement to terms of service failed",
       success: false,
     });
   }
@@ -139,6 +107,34 @@ app.post("/purchase", cors(), async (req, res) => {
     });
   }
 });
+
+const endpointSecret = 'whsec_IoDUkEH2eRMlLnkbFsmle0zBLFNVJ3g4';
+
+app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
+  const sig = request.headers['stripe-signature'];
+
+  let event;
+
+  // Verify webhook signature and extract the event.
+  // See https://stripe.com/docs/webhooks/signatures for more information.
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+  } catch (err) {
+    return response.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    handleCompletedCheckoutSession(session);
+  }
+
+  response.json({received: true});
+});
+
+const handleCompletedCheckoutSession = (session) => {
+  // Fulfill the purchase.
+  console.log(JSON.stringify(session));
+}
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Server started...");

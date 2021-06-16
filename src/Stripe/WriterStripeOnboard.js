@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import "../css/stripe.css"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { supabase } from "../api/supabaseClient";
 
 export const WriterStripeOnboard = () => {
   const stripe = useStripe();
@@ -63,6 +64,8 @@ export const WriterStripeOnboard = () => {
   };
 
   const createAccount = async (event) => {
+    const session = supabase.auth.session()
+
     event.preventDefault();
     try {
     const response = await axios.post(
@@ -71,17 +74,24 @@ export const WriterStripeOnboard = () => {
         type: 'express'
       }
     );
+    console.log('response: ' + response);
+
+    const { data, error } = await supabase
+  .from('writer_payments')
+  .insert([
+    { user_id: session?.user.id, account_id: response.data.account_id },
+  ])
 
     console.log('response:' + JSON.stringify(response));
 
         console.log("account creation: ", response.data.success);
-        if(response.data.url)
-        {
-          // console.log("hello redirect");
-          linkSet(response.data.url);
-          window.location.href=response.data.url;
-
-        }
+        // if(response.data.url)
+        // {
+        //   // console.log("hello redirect");
+        //   linkSet(response.data.url);
+        //   window.location.href=response.data.url;
+        //
+        // }
 
     }catch (error) {
         console.log("CheckoutForm.js 28 | ", error);
