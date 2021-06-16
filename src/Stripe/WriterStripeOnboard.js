@@ -85,13 +85,13 @@ export const WriterStripeOnboard = () => {
     console.log('response:' + JSON.stringify(response));
 
         console.log("account creation: ", response.data.success);
-        // if(response.data.url)
-        // {
-        //   // console.log("hello redirect");
-        //   linkSet(response.data.url);
-        //   window.location.href=response.data.url;
-        //
-        // }
+        if(response.data.url)
+        {
+          console.log("hello redirect");
+          linkSet(response.data.url);
+          window.location.href=response.data.url;
+
+        }
 
     }catch (error) {
         console.log("CheckoutForm.js 28 | ", error);

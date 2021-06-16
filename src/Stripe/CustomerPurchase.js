@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-// import "./App.css";
+import { supabase } from "../api/supabaseClient";
+import { useParams } from "react-router-dom";
+
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_51HevTDEdTRA1Rei3c76wSKc8hFjcEumOGFDTOsLgSKILa7jzv2xmy9sKZukoaypxeCLJh8Ubyp2lPQeHMJbUTZdi00Zjioxafj");
 
 const CustomerPurchase = ({ handleClick }) => (
   <section>
-    {/* <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-        <h3>Stubborn Attachments</h3>
-      </div>
-    </div> */}
     <button type="button" id="checkout-button" role="link" onClick={handleClick}>
       Checkout
     </button>
@@ -30,6 +23,8 @@ const Message = ({ message }) => (
 
 export default function App() {
   const [message, setMessage] = useState("");
+  const { slug } = useParams();
+  const supabaseSession = supabase.auth.session()
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -49,13 +44,21 @@ export default function App() {
   const handleClick = async (event) => {
     const stripe = await stripePromise;
 
+    const { data, error } = await supabase
+      .from('writer_payments')
+      .select('account_id')
+      .eq('user_id', slug)
+
+      console.log('data: ' + JSON.stringify(data));
     const response = await fetch("http://localhost:8080/create-checkout-session", {
       method: "POST",
-    });
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ account_id: data[0].account_id })
+  });
 
     const session = await response.json();
 
-    // When the customer clicks on the button, redirect them to Checkout.
+        // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });

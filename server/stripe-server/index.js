@@ -19,6 +19,10 @@ app.use((req, res, next) => {
 });
 
 app.post('/create-checkout-session', async (req, res) => {
+  const {request} = req;
+  const account_id = req.body.account_id;
+  console.log('request: ' + req.body.account_id);
+  var price =
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
@@ -36,7 +40,7 @@ app.post('/create-checkout-session', async (req, res) => {
     payment_intent_data: {
     application_fee_amount: 123,
     transfer_data: {
-      destination: 'acct_1J25jtRIZFHrDAIK',
+      destination: account_id,
     },
   },
     mode: 'payment',
