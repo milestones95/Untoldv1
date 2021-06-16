@@ -24,7 +24,10 @@ const useStyles = makeStyles(theme => ({
     background: "white",
   },
   textField: {
-    width: "100%",
+    width: "65%",
+  },
+  button: {
+    width: "65%",
   }
 }));
 
@@ -42,23 +45,24 @@ export default function ContactCard () {
           </Typography>
         </div>
       </Grid>
-      <Grid item xs={12} sm={4} className={classes.textField}>
+      <Grid item xs={12} sm={6}>
         <div align="right">
           <form noValidate autoComplete="off">
             <TextField
                   id="outlined-basic"
-                  value="Enter your email"
+                  placeholder="Enter your email"
                   variant="outlined"
                   InputProps={{
                     className: classes.input,
                   }}
+                  className={classes.textField}
             />
           </form>
         </div>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={2}>
         <div align="left">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" className={classes.button}>
             Notify me
           </Button>
         </div>

@@ -15,14 +15,8 @@ import IconButton from '@material-ui/core/Button';
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
-  root: {
-    background: "grey",
-    width: "90%",
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-    marginLeft: theme.spacing(78),
+  icons: {
+
   },
   text: {
     color: "black",
@@ -45,6 +39,10 @@ const styles = theme => ({
     shadowRadius: 0,
     elevation: 0 ,// This is for Android,
     background: "grey"
+  },
+  msg: {
+    marginLeft: theme.spacing(45),
+    marginRight: theme.spacing(45),
   }
 });
 
@@ -55,29 +53,13 @@ class ReviewComponent extends React.Component {
     super(props)
 
     // Set initial state
-    this.state = {msg : 'Hi, There!'}
+    this.state = {
+                  msg : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \
+                   Nemo expedita voluptas culpa sapiente alias molestiae. \
+                   Numquam corrupti in laborum sed rerum et corporis.'
+                 }
 
-  }
-
-  pressAvatar1 = () => {
-
-   // Changing state
-    this.setState({msg : 'Pressed Avatar One'})
-   }
-
-   pressAvatar2 = () => {
-
-    // Changing state
-     this.setState({msg : 'Pressed Avatar two'})
     }
-
-    pressAvatar3 = () => {
-
-     // Changing state
-      this.setState({msg : 'Pressed Avatar three'})
-     }
-
-
 
   render() {
     const { classes } = this.props;
@@ -87,30 +69,31 @@ class ReviewComponent extends React.Component {
           <Grid container spacing={3}>
           <Grid item xs={12} sm={12}>
             <div align="center">
-            <Typography variant="h6" >
+            <Typography variant="h6" style={{"color": "purple"}}>
               Why our reader’s love us
             </Typography>
             </div>
           </Grid>
           <Grid item xs={12} sm={12}>
-            <div align="center">
-            <Typography variant="h6" >
+            <div align="center" className={classes.msg}>
+            <Typography variant="h5" >
               {this.state.msg}
             </Typography>
             </div>
           </Grid>
-            <Grid item xs={12} sm={12}>
-              <div className={classes.root}>
-                <Link onClick={this.pressAvatar1} underline="none">
+            <Grid container item xs={12} sm={12} alignContent="center">
+              <Grid item xs={12} sm={6}>
+               <div align="right">
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.small} />
-                </Link>
-                <Link onClick={this.pressAvatar2} underline="none">
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.small} />
-                </Link>
-                <Link onClick={this.pressAvatar3} underline="none">
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.small} />
-                </Link>
-              </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <div align="left">
+                  <Typography variant="subtitle1">
+                    Judith Black
+                  </Typography>
+                </div>
+              </Grid>
             </Grid>
           </Grid>
       </Card>

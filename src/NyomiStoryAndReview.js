@@ -23,8 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   text: {
-    color: "black",
-    marginDown: theme.spacing(0)
+    marginTop: theme.spacing(5),
   },
   input: {
     background: "white",
@@ -33,8 +32,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
   },
   large: {
-    width: theme.spacing(30),
-    height: theme.spacing(30),
+    width: theme.spacing(33),
+    height: theme.spacing(33),
   },
   cardStyles: {
     borderWidth: 0, // Remove Border
@@ -43,8 +42,14 @@ const useStyles = makeStyles(theme => ({
     shadowOpacity: 0,
     shadowRadius: 0,
     elevation: 0, // This is for Android
-    background: "transparent"
-  }
+    height: '28vw'
+  },
+  text2: {
+    marginTop: theme.spacing(2)
+  },
+  text3: {
+    marginTop: theme.spacing(2)
+  },
 }));
 
 export default function ContactCard () {
@@ -54,26 +59,28 @@ export default function ContactCard () {
   <Card variant="outlined" className={classes.cardStyles}>
     <CardContent>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={4} className={classes.text}>
-          <div align="left">
+        <Grid item xs={12} sm={3}>
+          <div align="right" className={classes.profilePic}>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
           </div>
         </Grid>
-        <Grid item xs={12} sm={8} className={classes.text}>
+        <Grid item xs={12} sm={9} className={classes.text}>
           <div align="left">
             <Typography variant="h6" >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.
             </Typography>
-            <Typography variant="h6" >
+            <Typography variant="h6" className={classes.text2}>
               Judith Black
             </Typography>
-            <Typography variant="h6" >
+            <Typography variant="h6">
               CEO, Tuple
             </Typography>
+          </div>
+          <div align="left" className={classes.text3}>
             <Link variant="h6" href="/examplestory">
               Read her story
             </Link>
-          </div>
+        </div>
         </Grid>
       </Grid>
    </CardContent>

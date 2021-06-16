@@ -25,19 +25,18 @@ import JumboTron from '../JumboTron';
 
 const useStyles = makeStyles(theme => ({
   root:{
-    background: "white",
+    background: "grey",
   },
   jumboTronSection: {
     marginTop: theme.spacing(20),
     background: "grey",
-    border: "grey"
   },
   reviewSection: {
     marginTop: theme.spacing(20),
-    background: "grey"
   },
   nyomiStoryAndReview: {
     marginTop: theme.spacing(8),
+    background: "white"
   },
   howItWorks: {
     marginLeft: theme.spacing(8),
@@ -47,6 +46,9 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     width: "40%"
+  },
+  contactSection: {
+    marginTop: theme.spacing(20),
   },
 }));
 
@@ -67,30 +69,7 @@ export default function HorizontalLinearStepper() {
           <Grid item xs={12} sm={12} className={classes.nyomiStoryAndReview}>
             <NyomiStoryAndReview />
           </Grid>
-          <Grid item xs={12} sm={8} className={classes.howItWorks}>
-            <Typography variant="h6" >
-              Everything you need for $99 a month
-            </Typography>
-            <Typography variant="subtitle1" >
-              Includes every feature we offer plus unlimited projects and unlimited users.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <div align="left">
-              <Button variant="contained" color="primary" className={classes.buyButton}>
-                Get started today
-              </Button>
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={12} className={classes.howItWorks}>
-            <div align="center">
-             <Divider light className={classes.divider} />
-            </div>
-            <div align="center">
-              <HowItWorks />
-            </div>
-          </Grid>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={12} className={classes.contactSection}>
           <div align="center">
             <ContactCard />
           </div>
