@@ -10,7 +10,7 @@ import { useAuth } from '../Auth/Auth'
 import { Redirect } from "react-router";
 import { Link } from 'react-router-dom'
 
-class BrowsePage2 extends React.Component{
+class BrowseWriters extends React.Component{
   constructor(props) {
       super(props);
       this.state = {
@@ -106,7 +106,7 @@ class BrowsePage2 extends React.Component{
         </label>
 
         {this.state.writers.map((writers, index) => (
-        <Link to={"/browse2/" + writers.username} key={writers.username}>
+        <Link to={"/browseWriters/" + writers.id} key={writers.id}>
           <span>
             {/* <li key={index}>Id:  {writers.users.id}</li> */}
             <li key={index}>username:   {writers.username}</li>
@@ -121,4 +121,4 @@ class BrowsePage2 extends React.Component{
 }
 
 
-export default BrowsePage2;
+export default BrowseWriters;
