@@ -28,8 +28,10 @@ import WriterProfileUserView from './pages/WriterProfileUserView'
 import Reader from './pages/Reader'
 import AuthProvider from './Auth/Auth'
 import {PrivateRoute, BlockAuthFlows} from './PrivateRoute'
-import BrowsePage from './pages/BrowsePage'
-import BrowsePage2 from './pages/BrowsePage2'
+import BrowseWriters from './pages/BrowseWriters'
+import StripeContainer from './Stripe/StripeContainer'
+import CustomerPurchaseStripeContainer from './Stripe/CustomerPurchaseStripeContainer'
+import TermsOfService from './Stripe/TermsOfService'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -51,10 +53,12 @@ ReactDOM.render(
           <PrivateRoute exact path="/storypage/:slug" component={UserStoryPage} />
           <Route exact path="/onboarding" component={HorizontalLinearStepper} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/browse" component={BrowsePage} />
-          <Route exact path="/browse2" component={BrowsePage2} />
-          <Route exact path="/browse2/:slug" component={WriterProfileUserView} />
-          {/* <Route exact path="/form" component={Form} /> */}
+          <Route exact path="/browseWriters" component={BrowseWriters} />
+          <Route exact path="/browseWriters/:slug" component={WriterProfileUserView} />
+          <Route exact path="/wCreateAccount" component={StripeContainer} />
+          {/* <Route exact path="/purchase" component={CheckoutPage} /> */}
+          <Route exact path="/stripe/tos" component={TermsOfService} />
+          <Route exact path="/purchase" component={CustomerPurchaseStripeContainer} />
           <Route exact path="/reader" component={Reader} />
           <Route exact path="/" component={Home} />
         </AuthProvider>

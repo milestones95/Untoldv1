@@ -2,30 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../api/supabaseClient";
 import UserStoryRequest from './UserStoryRequest';
-// class WriterwriterPage extends React.Component{
-//   constructor(props) {
-//       super(props);
-//       this.state = {
-//         stories: [],
-//         isFetching: false
-//     };
-//   }
-//
-//   componentDidMount(){
-//
-//   }
-//
-//   render(){
-//     return(
-//       <div>
-//         writer id: {this.props.writer_id}
-//       </div>
-//     );
-//   }
-//
-// }
-//
-// export default WriterwriterPage;
+import CustomerPurchase from '../Stripe/CustomerPurchase';
 
 export default function WriterProfileUserView(){
   const { slug } = useParams();
@@ -36,7 +13,7 @@ export default function WriterProfileUserView(){
     let { data, error } = await supabase
         .from('users')
         .select('username, quote, id')
-        .eq('username', slug)
+        .eq('id', slug)
 
         writerSet(data[0]);
         console.log("component: "+ showComponent);
@@ -62,6 +39,8 @@ export default function WriterProfileUserView(){
       {showComponent ?
            <UserStoryRequest id={writer.id}/> :null
         }
+        <CustomerPurchase/>
+
     </div>
 );
 }

@@ -4,8 +4,9 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../templates/Navbar";
 import Footer from "../templates/Footer";
-import Link from '@material-ui/core/Link';
+import {Link } from "react-router-dom";
 import { supabase } from "../api/supabaseClient";
+import { useHistory } from "react-router";
 
 class WriterProfile extends React.Component{
   constructor(props) {
@@ -17,6 +18,7 @@ class WriterProfile extends React.Component{
 
 
     this.handleChange = this.handleChange.bind(this);
+    this.openPayments = this.openPayments.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -26,6 +28,11 @@ class WriterProfile extends React.Component{
     this.setState({
       [name]: value
     });
+  }
+
+  openPayments(event) {
+    console.log("payments");
+
   }
 
   handleSubmit = async(event) => {
@@ -43,6 +50,7 @@ class WriterProfile extends React.Component{
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
         <label>
           Bio Description:
@@ -50,6 +58,10 @@ class WriterProfile extends React.Component{
         </label>
         <input type="submit" value="Save" />
       </form>
+      <Link to="/wCreateAccount">
+        <button>Payments</button>
+      </Link>
+    </div>
     );
   }
 }
