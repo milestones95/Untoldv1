@@ -81,7 +81,7 @@
 }
 
 /* Please remove from your implementation. Used to display the white button on the white background */
-div {
+/* div {
   background-color: #e5e5e5;
   height: 40px;
   width: 182px;
@@ -89,4 +89,4 @@ div {
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-}
+} */
