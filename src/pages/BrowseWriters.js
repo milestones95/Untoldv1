@@ -38,7 +38,7 @@ class BrowseWriters extends React.Component{
       if(updatedCategory != 0)
       {
         let { data, error } = await supabase
-          .rpc('ListWritersPerCategory', {
+          .rpc('ListWritersPerCategoryWithPayoutEnabled', {
             c_id: parseInt(updatedCategory)
           })
 
@@ -47,7 +47,8 @@ class BrowseWriters extends React.Component{
 
       }else{
         let { data, error } = await supabase
-          .rpc('ListAllWriters')
+          .rpc('ListAllWritersWithPayoutEnabled')
+          console.log("hello there");
         console.log(data);
         // this.setState({writers: data, isFetching : false});
         this.setState({writers: data, isFetching : false});
@@ -75,7 +76,7 @@ class BrowseWriters extends React.Component{
         // `).eq('users.is_writer', 1)
 
         let { data, error } = await supabase
-          .rpc('ListAllWriters')
+          .rpc('ListAllWritersWithPayoutEnabled')
         console.log(data);
         this.setState({writers: data, isFetching : false});
 
