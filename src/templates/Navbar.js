@@ -16,6 +16,7 @@ import AppBar from '@material-ui/core/AppBar';
 const styles = theme => ({
   root: {
     position: "static",
+    background: "grey",
   },
   buttonBar: {
     [theme.breakpoints.down("sm")]: {
@@ -24,7 +25,7 @@ const styles = theme => ({
     position: "fixed",
     width: "100%",
     height: "7%",
-    background: "#000000",
+    background: "black",
   },
   buttonBarText: {
     marginTop: theme.spacing(1.5),
@@ -44,6 +45,9 @@ const styles = theme => ({
   dropDownMenuItem: {
     textAlign: "left",
     marginLeft: theme.spacing(2),
+  },
+  mobileColor: {
+    background: "black",
   }
 });
 
@@ -119,48 +123,51 @@ ElevationScroll.propTypes = {
 const Navbar = props => (
   <ElevationScroll {...props}>
   <div className={props.classes.root}>
-    <ButtonAppBarCollapse>
-      <Grid container rows spacing={3}>
-        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href="/home">Home</Link>
-        </Grid>
-        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href='#'>How It Works</Link>
-        </Grid>
-        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          <Link href='/examplestory'>Example Story</Link>
-        </Grid>
-        <Grid item xs={12} className={props.classes.dropDownMenuItem}>
-          {DisableLoginButton()}
-        </Grid>
-        <Grid item xs={12}>
-          {NavBarButton()}
-        </Grid>
+    <ButtonAppBarCollapse className={props.classes.root}>
+      <Grid container rows spacing={3} className={props.classes.mobileColor}>
+        <div className={props.classes.dropDownMenuItem}>
+          <Grid item xs={12}>
+            <Link href="/home">Home</Link>
+          </Grid>
+          <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+            <Link href='#'>How It Works</Link>
+          </Grid>
+          <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+            <Link href='/examplestory'>Example Story</Link>
+          </Grid>
+          <Grid item xs={12} className={props.classes.dropDownMenuItem}>
+            {DisableLoginButton()}
+          </Grid>
+          <Grid item xs={12}>
+            {NavBarButton()}
+          </Grid>
+        </div>
       </Grid>
     </ButtonAppBarCollapse>
-
-    <div className={props.classes.buttonBar} id="appbar-collapse">
-      <Grid container>
-        <Grid item lg={2} sm={2} className={props.classes.menuIcon}>
-          < MenuIcon color="primary"/>
-        </Grid>
-        <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
-          <Typography className={props.classes.links}>
-            <Link href="/home" >Home</Link>
-            <Link href='#'>How It Works</Link>
-            <Link href='/examplestory'>Example Story</Link>
-          </Typography>
-        </Grid>
-        <Grid item lg={1} sm={1}>
-              <Typography className={props.classes.links}>
-                {DisableLoginButton()}
-              </Typography>
-        </Grid>
-        <Grid item lg={1} sm={1} style={{textAlign: "left"}} className={props.classes.signUpButton}>
-          {NavBarButton()}
-        </Grid>
-        </Grid>
-    </div>
+    <AppBar>
+      <div className={props.classes.buttonBar} id="appbar-collapse">
+        <Grid container>
+          <Grid item lg={2} sm={2} className={props.classes.menuIcon}>
+            < MenuIcon color="primary"/>
+          </Grid>
+          <Grid item lg={8} sm={8} style={{textAlign: "center"}}>
+            <Typography className={props.classes.links}>
+              <Link href="/home" >Home</Link>
+              <Link href='#'>How It Works</Link>
+              <Link href='/examplestory'>Example Story</Link>
+            </Typography>
+          </Grid>
+          <Grid item lg={1} sm={1}>
+                <Typography className={props.classes.links}>
+                  {DisableLoginButton()}
+                </Typography>
+          </Grid>
+          <Grid item lg={1} sm={1} style={{textAlign: "left"}} className={props.classes.signUpButton}>
+            {NavBarButton()}
+          </Grid>
+          </Grid>
+      </div>
+   </AppBar>
   </div>
   </ElevationScroll>
 );

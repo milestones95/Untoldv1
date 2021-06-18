@@ -22,7 +22,7 @@ import ReviewComponent from '../ReviewComponent'
 import HowItWorks from './HowItWorks'
 import Divider from '@material-ui/core/Divider';
 import JumboTron from '../JumboTron';
-
+ // Maake everything a multiple of 8
 const useStyles = makeStyles(theme => ({
   root:{
     background: "grey",
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function HorizontalLinearStepper() {
+export default function Home() {
   const classes = useStyles();
 
     return (

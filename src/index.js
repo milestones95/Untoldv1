@@ -8,10 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import ExampleStory from "./pages/ExampleStory";
 import Profile from "./pages/Profile";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import BaseTemplate from "./templates/BaseTemplate";
-import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
-import Example from './TailWindTest'
 import HorizontalLinearStepper from './Stepper'
 import Home from './pages/Home'
 import UserStoryLibrary from './pages/UserStoryLibrary'
@@ -56,7 +53,7 @@ ReactDOM.render(
           <Route exact path="/browseWriters" component={BrowseWriters} />
           <Route exact path="/browseWriters/:slug" component={WriterProfileUserView} />
           <Route exact path="/wCreateAccount" component={StripeContainer} />
-          {/* <Route exact path="/purchase" component={CheckoutPage} /> */}
+          // {/* <Route exact path="/purchase" component={CheckoutPage} /> */}
           <Route exact path="/stripe/tos" component={TermsOfService} />
           <Route exact path="/purchase" component={CustomerPurchaseStripeContainer} />
           <Route exact path="/reader" component={Reader} />
