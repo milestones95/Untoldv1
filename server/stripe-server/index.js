@@ -140,6 +140,10 @@ const handleCompletedCheckoutSession = (session) => {
   console.log(JSON.stringify(session));
 }
 
+//Email from sendgrid
+
+
+
 app.listen(process.env.PORT || 8080, () => {
   console.log("Server started...");
 });
